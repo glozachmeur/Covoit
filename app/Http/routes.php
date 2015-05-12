@@ -22,5 +22,3 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-Route::get('{n}', function($n){return "hello world n°".$n.".";});

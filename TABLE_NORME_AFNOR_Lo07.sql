@@ -7,13 +7,13 @@ SET FOREIGN_KEY_CHECKS=0;
 --   Table : T_MEMBRE 
 -- ============================================================
 CREATE TABLE IF NOT EXISTS T_MEMBRE(
-	idMembre 			INT(10) 		NOT NULL 	AUTO_INCREMENT,
+	id 			INT(10) 		NOT NULL 	AUTO_INCREMENT,
 	pseudoMembre 		VARCHAR(20) 	NOT NULL,
 	prenomMembre 		VARCHAR(25) 	NOT NULL,
-	nomMembre 			VARCHAR(25) 	NOT NULL,
-	mdpMembre 			VARCHAR(20) 	NOT NULL,
+	name 				VARCHAR(25) 	NOT NULL,
+	password 			VARCHAR(20) 	NOT NULL,
 	dnMembre 			DATE 			NOT NULL,
-	emailMembre 		VARCHAR(75)		NOT NULL,
+	email 				VARCHAR(75)		NOT NULL,
 	telFixeMembre 		VARCHAR(13),
 	telPortMembre 		VARCHAR(13) 	NOT NULL,
 	numRueMembre 		VARCHAR(10),
@@ -23,7 +23,9 @@ CREATE TABLE IF NOT EXISTS T_MEMBRE(
 	vehiculeMembre		INT(10),
 	dateInscription 	DATE 			NOT NULL,
 	photoMembre 		BLOB,
-	CONSTRAINT C_PK_Membre PRIMARY KEY(idMembre),
+	updated_at 			DATE,
+	created_at 			DATE,
+	CONSTRAINT C_PK_Membre PRIMARY KEY(id),
 	INDEX ind_MEMBRE_vehiculeMembre(vehiculeMembre),
 	CONSTRAINT C_FK_MEMBRE_vehiculeMembre_VEHICULE FOREIGN KEY (vehiculeMembre) REFERENCES T_VEHICULE(idVehicule),
 	CONSTRAINT C_CHK_cpMembre_MEMBRE CHECK (cpMembre LIKE REPLICATE('[0-9]', 5)),
@@ -60,7 +62,7 @@ CREATE TABLE IF NOT EXISTS T_TRAJET(
 	INDEX ind_TRAJET_appreciationTrajet(appreciationTrajet),
 	INDEX ind_TRAJET_idConducteur(idConducteur),
 	CONSTRAINT C_FK_TRAJET_appreciationTrajet_APPRECIATION FOREIGN KEY (appreciationTrajet) REFERENCES T_APPRECIATION(idAppreciation),
-	CONSTRAINT C_FK_TRAJET_idConducteur_MEMBRE FOREIGN KEY (idConducteur) REFERENCES T_MEMBRE(idMembre)
+	CONSTRAINT C_FK_TRAJET_idConducteur_MEMBRE FOREIGN KEY (idConducteur) REFERENCES T_MEMBRE(id)
 	) ENGINE=InnoDB;
 -- ============================================================
 --   Table : T_APPRECIATION
@@ -85,7 +87,7 @@ CREATE TABLE IF NOT EXISTS T_ADMIN(
 	telFixeAdmin	VARCHAR(13),
 	telPortAdmin	VARCHAR(13) 	NOT NULL,
 	CONSTRAINT C_PK_Admin PRIMARY KEY(idAdmin),
-	CONSTRAINT C_CHK_telPortAdmin CHECK (telPortAdminLIKE REPLICATE('[0-9]', 10))
+	CONSTRAINT C_CHK_telPortAdmin CHECK (telPortAdmin LIKE REPLICATE('[0-9]', 10))
 	) ENGINE=InnoDB;
 -- ============================================================
 --   Table : TJ_RESERVATION
@@ -97,6 +99,6 @@ CREATE TABLE IF NOT EXISTS TJ_RESERVATION(
 	CONSTRAINT C_PK_Admin PRIMARY KEY(idReservation),
 	INDEX ind_RESERVATION_idClientReservation(idClientReservation),
 	INDEX ind_RESERVATION_trajetReservation(trajetReservation),
-	CONSTRAINT C_FK_RESERVATION_idClientReservation_MEMBRE FOREIGN KEY (idClientReservation) REFERENCES T_MEMBRE(idMembre),
+	CONSTRAINT C_FK_RESERVATION_idClientReservation_MEMBRE FOREIGN KEY (idClientReservation) REFERENCES T_MEMBRE(id),
 	CONSTRAINT C_FK_RESERVATION_trajetReservation_TRAJET FOREIGN KEY (trajetReservation) REFERENCES T_TRAJET(idTrajet)
 	) ENGINE=InnoDB;
