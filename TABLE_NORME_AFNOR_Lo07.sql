@@ -3,11 +3,19 @@ CREATE DATABASE baseLo07v2;
 use baseLo07v2;
 CHARSET utf8;
 SET FOREIGN_KEY_CHECKS=0;
+Schema::create('t_vehicule', function(Blueprint $table)
+		{
+			$table->increments('idVehicule');
+			$table->string('couleurVehicule', 15);
+			$table->string('marqueVehicule', 15);
+			$table->string('nomVehicle', 25);
+			$table->date('dateMiseEnService');
+			$table->integer('nbPlaces');
 -- ============================================================
 --   Table : T_MEMBRE 
 -- ============================================================
-CREATE TABLE IF NOT EXISTS T_MEMBRE(
-	id 			INT(10) 		NOT NULL 	AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS users(
+	id 					INT(10) 		NOT NULL 	AUTO_INCREMENT,
 	pseudoMembre 		VARCHAR(20) 	NOT NULL,
 	prenomMembre 		VARCHAR(25) 	NOT NULL,
 	name 				VARCHAR(25) 	NOT NULL,
@@ -23,8 +31,9 @@ CREATE TABLE IF NOT EXISTS T_MEMBRE(
 	vehiculeMembre		INT(10),
 	dateInscription 	DATE 			NOT NULL,
 	photoMembre 		BLOB,
-	updated_at 			DATE,
-	created_at 			DATE,
+	updated_at 			timestamp 		NOT NULL,
+	created_at 			timestamp 		NOT NULL,
+	remember_token 		VARCHAR(100),
 	CONSTRAINT C_PK_Membre PRIMARY KEY(id),
 	INDEX ind_MEMBRE_vehiculeMembre(vehiculeMembre),
 	CONSTRAINT C_FK_MEMBRE_vehiculeMembre_VEHICULE FOREIGN KEY (vehiculeMembre) REFERENCES T_VEHICULE(idVehicule),
@@ -62,7 +71,7 @@ CREATE TABLE IF NOT EXISTS T_TRAJET(
 	INDEX ind_TRAJET_appreciationTrajet(appreciationTrajet),
 	INDEX ind_TRAJET_idConducteur(idConducteur),
 	CONSTRAINT C_FK_TRAJET_appreciationTrajet_APPRECIATION FOREIGN KEY (appreciationTrajet) REFERENCES T_APPRECIATION(idAppreciation),
-	CONSTRAINT C_FK_TRAJET_idConducteur_MEMBRE FOREIGN KEY (idConducteur) REFERENCES T_MEMBRE(id)
+	CONSTRAINT C_FK_TRAJET_idConducteur_users FOREIGN KEY (idConducteur) REFERENCES users(id)
 	) ENGINE=InnoDB;
 -- ============================================================
 --   Table : T_APPRECIATION

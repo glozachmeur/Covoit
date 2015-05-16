@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function()
-{
-    return view('welcome');
-});
-
-Route::get('home', 'HomeController@index');
+//route la gestion des utilisateurs
+Route::resource('user', 'UserController');
+Route::resource('vehicule', 'VehiculeController');
+Route::resource('/', 'HomeController');
+Route::resource('home', 'HomeController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -33,7 +33,9 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Accueil</a></li>
+					<li><a href="{{ url('/home') }}">Accueil</a></li>
+					<li><a href="{{ url('/user') }}">Administration</a></li>
+					<li><a href="{{ url('/vehicule') }}">Véhicules</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

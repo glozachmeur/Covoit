@@ -27,6 +27,13 @@
 								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<label class="col-md-4 control-label">Prénom</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="prenomUsers" value="{{ old('name') }}">
+							</div>
+						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Addresse e-mail</label>
