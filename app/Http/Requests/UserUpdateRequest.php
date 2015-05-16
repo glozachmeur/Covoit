@@ -13,9 +13,9 @@ class UserUpdateRequest extends Request {
 	{
 		$id = $this->segment(2);
 		return [
-			'name' => 'required|max:255|unique:users,name,' . $id,
+			'name' => 'max:255|unique:users,name,' . $id,
 			'prenomUsers' => 'max:255' . $id,
-			'email' => 'required|email|max:255|unique:users,email,' . $id
+			'email' => 'email|max:255|unique:users,email,' . $id
 		];
 	}
 

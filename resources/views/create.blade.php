@@ -14,10 +14,10 @@
 					</div>
 					<div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
 					  	{!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
-					  	{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
+					  	{!! $errors->first('email', '<small class="help-block">:message</small>') !!}
 					</div>
 					<div class="form-group {!! $errors->has('password') ? 'has-error' : '' !!}">
-					  	{!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Mot de passe']) !!}
+					  	{!! Form::password('password']) !!}
 					  	{!! $errors->first('password', '<small class="help-block">:message</small>') !!}
 					</div>
 					<div class="form-group">

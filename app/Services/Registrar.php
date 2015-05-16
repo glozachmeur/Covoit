@@ -16,6 +16,11 @@ class Registrar implements RegistrarContract {
 	{
 		return Validator::make($data, [
 			'name' => 'required|max:255',
+			'prenomUsers' => 'required|max:255',
+			'pseudoUsers' => 'required|max:255|unique:users',
+			'telPortUsers' => 'required|max:13',
+			'telFixeUsers' => 'max:13',
+			'dateNaissanceUsers' => 'required',
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
 		]);
@@ -28,12 +33,29 @@ class Registrar implements RegistrarContract {
 	 * @return User
 	 */
 	public function create(array $data)
-	{
-		return User::create([
-			'name' => $data['name'],
-			'email' => $data['email'],
-			'password' => bcrypt($data['password']),
-		]);
+	{	
+		if(isset($data['telFixeUsers'])){
+			return User::create([
+				'name' => $data['name'],
+				'prenomUsers' => $data['prenomUsers'],
+				'pseudoUsers' => $data['pseudoUsers'],
+				'telPortUsers' => $data['telPortUsers'],
+				'telFixeUsers' => $data['telFixeUsers'],
+				'dateNaissanceUsers' => $data['dateNaissanceUsers'],
+				'email' => $data['email'],
+				'password' => bcrypt($data['password']),
+			]);
+		}else{
+			return User::create([
+				'name' => $data['name'],
+				'prenomUsers' => $data['prenomUsers'],
+				'pseudoUsers' => $data['pseudoUsers'],
+				'telPortUsers' => $data['telPortUsers'],
+				'dateNaissanceUsers' => $data['dateNaissanceUsers'],
+				'email' => $data['email'],
+				'password' => bcrypt($data['password']),
+			]);
+		}
 	}
 
 }

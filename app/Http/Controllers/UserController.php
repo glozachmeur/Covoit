@@ -85,9 +85,14 @@ class UserController extends Controller {
 	 */
 	public function update(UserUpdateRequest $request, $id)
 	{
-		$this->setAdmin($request);
-		$this->userRepository->update($id, $request->all());
-		return redirect('user')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
+		if($request->input('fromAccount')!==null){
+			$this->userRepository->update($id, $request->all());
+			return redirect('myaccount')->withOk("Votre compte a été modifié.");
+		}else{
+			$this->setAdmin($request);
+			$this->userRepository->update($id, $request->all());
+			return redirect('user')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
+		}
 	}
 
 	/**

@@ -13,10 +13,9 @@ class VehiculeCreateRequest extends Request {
 	{
 		$id = $this->segment(2);
 		return [
-			'couleurVehicule' => 'required|max:255' . $id,
-			'marqueVehicule' => 'required|max:255' . $id,
-			'nomVehicule' => 'required|max:255' . $id,
-			'nbPlace' => 'required|max:10' . $id
+			'nomVehicule' => 'required|max:255',
+			'marqueVehicule' => 'required|max:255',
+			'couleurVehicule' => 'required|max:255'
 		];
 	}
 

@@ -25,6 +25,7 @@ class CreateTTrajetTable extends Migration {
 			$table->boolean('statutTrajet')->default(false);
 			$table->integer('pppTrajet');
 			
+			$table->timestamps();
 			$table->engine = 'InnoDB';
 		});
 		

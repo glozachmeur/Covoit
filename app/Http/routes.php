@@ -17,6 +17,13 @@ Route::resource('vehicule', 'VehiculeController');
 Route::resource('/', 'HomeController');
 Route::resource('home', 'HomeController');
 
+get('myaccountupdate', 'UserController@updateFromAccount');
+
+Route::get('myaccount', function()
+{
+    return View::make('monCompte');
+});
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

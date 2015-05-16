@@ -7,11 +7,10 @@
 			<div class="panel-heading">Fiche d'utilisateur</div>
 			<div class="panel-body"> 
 				<p>Nom : {{ $user->name }}</p>
+				<p>Prénom : {{ $user->prenomUsers }}</p>
+				<p>Pseudo : {{ $user->pseudoUsers }}</p>
 				<p>Email : {{ $user->email }}</p>
-				
-				<?php if($user->prenomUsers !=''){ ?>
-					<p>Prénom : {{ $user->prenomUsers }}</p>
-				<?php } ?>
+				<p>Date de naissance : {{ $user->dateNaissanceUsers }}</p>
 				
 				<?php if($user->telPortUsers !=''){ ?>
 					<p>Numérode tel. portable : {{ $user->telPortUsers }}</p>				
@@ -20,11 +19,10 @@
 				<?php if($user->telFixeUsers !=''){ ?>
 					<p>Numérode tel. fixe : {{ $user->telFixeUsers }}</p>				
 				<?php } ?>
-				
+
 				<?php if($user->photoUsers !=''){ echo $user->photoUsers->get ?>
 					<p>Photo de profil : <img src="data:image/jpeg;base64,' . base64_encode( $user->photoUsers ) . '" />
 				<?php } ?>
-				<br/>
 				@if($user->admin == 1)
 					Administrateur
 				@endif

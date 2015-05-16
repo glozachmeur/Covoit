@@ -14,12 +14,14 @@ class CreateTVehiculeTable extends Migration {
 	{
 		Schema::create('t_vehicule', function(Blueprint $table)
 		{
-			$table->increments('idVehicule');
+			$table->increments('id');
 			$table->string('couleurVehicule', 15);
 			$table->string('marqueVehicule', 15);
 			$table->string('nomVehicule', 25);
 			$table->date('dateMiseEnService');
 			$table->integer('nbPlaces');
+			
+			$table->timestamps();
 			$table->engine = 'InnoDB';
 		});
 	}

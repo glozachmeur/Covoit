@@ -3,14 +3,6 @@ CREATE DATABASE baseLo07v2;
 use baseLo07v2;
 CHARSET utf8;
 SET FOREIGN_KEY_CHECKS=0;
-Schema::create('t_vehicule', function(Blueprint $table)
-		{
-			$table->increments('idVehicule');
-			$table->string('couleurVehicule', 15);
-			$table->string('marqueVehicule', 15);
-			$table->string('nomVehicle', 25);
-			$table->date('dateMiseEnService');
-			$table->integer('nbPlaces');
 -- ============================================================
 --   Table : T_MEMBRE 
 -- ============================================================

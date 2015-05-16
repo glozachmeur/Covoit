@@ -17,5 +17,5 @@ class Vehicule extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['couleurVehicule', 'marqueVehicule', 'nomVehicule', 'dateMiseEnService', 'nbPlaces'];
+	protected $fillable = ['couleurVehicule', 'marqueVehicule', 'nomVehicule', 'dateMiseEnService', 'nbPlacesVehicule'];
 }

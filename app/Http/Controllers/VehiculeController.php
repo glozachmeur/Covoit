@@ -24,7 +24,7 @@ class VehiculeController extends Controller {
 	{
 		$vehicules = $this->vehiculeRepository->getPaginate($this->nbrPerPage);
 		$links = str_replace('/?', '?', $vehicules->render());
-		return view('indexVehicule', compact('vehicules', 'links'));
+		return view('Vehicule/indexVehicule', compact('vehicules', 'links'));
 	}
 
 	/**
@@ -34,7 +34,7 @@ class VehiculeController extends Controller {
 	 */
 	public function create()
 	{
-		return view('create');
+		return view('Vehicule/createVehicule');
 	}
 
 	/**
@@ -44,7 +44,6 @@ class VehiculeController extends Controller {
 	 */
 	public function store(vehiculeCreateRequest $request)
 	{
-		$this->setAdmin($request);
 		$vehicule = $this->vehiculeRepository->store($request->all());
 		return redirect('vehicule')->withOk("Le véhicule " . $vehicule->name . " a été créé.");
 	}
@@ -60,7 +59,7 @@ class VehiculeController extends Controller {
 		
 		$vehicule = $this->vehiculeRepository->getById($id);
 
-		return view('show',  compact('vehicule'));
+		return view('Vehicule/showVehicule',  compact('vehicule'));
 	}
 
 	/**
@@ -73,7 +72,7 @@ class VehiculeController extends Controller {
 	{
 		$vehicule = $this->vehiculeRepository->getById($id);
 
-		return view('edit',  compact('vehicule'));
+		return view('Vehicule/editVehicule',  compact('vehicule'));
 	}
 
 	/**
@@ -84,10 +83,9 @@ class VehiculeController extends Controller {
 	 */
 	public function update(vehiculeUpdateRequest $request, $id)
 	{
-		$this->setAdmin($request);
-		$this->vehiculeRepository->update($id, $request->all());
+    	$this->vehiculeRepository->update($id, $request->all());
 		
-		return redirect('vehicule')->withOk("Le véhicule " . $request->input('name') . " a été modifié.");
+		return redirect('vehicule')->withOk("Le véhicule " . $request->input('nomVehicule') . " a été modifié.");
 	}
 
 	/**

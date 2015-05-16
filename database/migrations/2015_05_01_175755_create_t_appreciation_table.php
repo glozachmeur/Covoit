@@ -17,8 +17,9 @@ class CreateTAppreciationTable extends Migration {
 			$table->increments('idAppreciation');
 			$table->integer('valeurAppreciation');
 			$table->string('commentaireAppreciation',100);
-			$table->engine = 'InnoDB';
-		});
+			
+			$table->timestamps();
+			$table->engine = 'InnoDB';		});
 		
 	
 	}
