@@ -14,6 +14,7 @@
 					<p>Prénom : {{ $user->prenomUsers }}</p>
 					<p>Email : {{ $user->email }}</p>
 					<p>Pseudo : {{ $user->pseudoUsers }}</p>
+					<p>Date de naissance : {{ $user->dateNaissanceUsers }}</p>
 					{!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 						Téléphone portable
 						<div class="form-group {!! $errors->has('telPortUsers') ? 'has-error' : '' !!}">

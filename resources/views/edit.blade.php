@@ -34,14 +34,14 @@
 					
 					<div class="form-group {!! $errors->has('dateNaissanceUsers') ? 'has-error' : '' !!}">
 					  	Date de naissance :
-						{!! Form::date('dateNaissanceUsers',  Auth::user()->dateNaissanceUsers) !!}
+						{!! Form::date('dateNaissanceUsers',  $user->dateNaissanceUsers) !!}
 					  	{!! $errors->first('dateNaissanceUsers', '<small class="help-block">:message</small>') !!}
 					</div>
 					
 					<div class="form-group {!! $errors->has('telPortUsers') ? 'has-error' : '' !!}">
 					  	Numéro tel portable :
 						{!! Form::text('telPortUsers', null, ['class' => 'form-control', 'placeholder' => 'Numéro de tel. portable']) !!}
-					  	{!! $errors->first('prenomUsers', '<small class="help-block">:message</small>') !!}
+					  	{!! $errors->first('telPortUsers', '<small class="help-block">:message</small>') !!}
 					</div>
 					
 					<div class="form-group {!! $errors->has('telFixeUsers') ? 'has-error' : '' !!}">
@@ -52,7 +52,7 @@
 					
 					<div class="form-group {!! $errors->has('photoUsers') ? 'has-error' : '' !!}">
 						Photo de profil
-					  	{!! Form::file('photoUsers', null, ['class' => 'form-control', 'placeholder' => 'Photo']) !!}
+					  	{!! Form::file('photoUsers', null) !!}
 					  	{!! $errors->first('photoUsers', '<small class="help-block">:message</small>') !!}
 					</div>
 					<div class="form-group">
