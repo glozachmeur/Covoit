@@ -19,10 +19,7 @@
 				<?php if($user->telFixeUsers !=''){ ?>
 					<p>Numérode tel. fixe : {{ $user->telFixeUsers }}</p>				
 				<?php } ?>
-
-				<?php if($user->photoUsers !=''){ echo $user->photoUsers->get ?>
-					<p>Photo de profil : <img src="data:image/jpeg;base64,' . base64_encode( $user->photoUsers ) . '" />
-				<?php } ?>
+				
 				@if($user->admin == 1)
 					Administrateur
 				@endif
