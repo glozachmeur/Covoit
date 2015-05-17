@@ -43,7 +43,7 @@ class Registrar implements RegistrarContract {
 				'telFixeUsers' => $data['telFixeUsers'],
 				'dateNaissanceUsers' => $data['dateNaissanceUsers'],
 				'email' => $data['email'],
-				'password' => bcrypt($data['password']),
+				'password' => $data['password'],
 			]);
 		}else{
 			return User::create([
@@ -53,7 +53,7 @@ class Registrar implements RegistrarContract {
 				'telPortUsers' => $data['telPortUsers'],
 				'dateNaissanceUsers' => $data['dateNaissanceUsers'],
 				'email' => $data['email'],
-				'password' => bcrypt($data['password']),
+				'password' => $data['password'],
 			]);
 		}
 	}
