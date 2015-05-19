@@ -17,5 +17,10 @@ class Vehicule extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['couleurVehicule', 'marqueVehicule', 'nomVehicule', 'dateMiseEnService', 'nbPlacesVehicule'];
+	protected $fillable = ['couleurVehicule', 'marqueVehicule', 'nomVehicule', 'dateMiseEnService', 'nbPlacesVehicule','user_id'];
+	
+	public function user()
+	{
+		return $this->belongsTo('App\User');
+	}
 }

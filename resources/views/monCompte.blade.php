@@ -10,21 +10,23 @@
 			<div class="panel-body"> 
 				<div class="col-sm-12">
 					<?php $user=Auth::user(); ?>
-					<p>Nom : {{ $user->name }}</p>
-					<p>Prénom : {{ $user->prenomUsers }}</p>
-					<p>Email : {{ $user->email }}</p>
-					<p>Pseudo : {{ $user->pseudoUsers }}</p>
-					<p>Date de naissance : {{ $user->dateNaissanceUsers }}</p>
 					{!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
-						Téléphone portable
-						<div class="form-group {!! $errors->has('telPortUsers') ? 'has-error' : '' !!}">
-							{!! Form::text('telPortUsers', null, ['class' => 'form-control', 'placeholder' => 'Numéro de tel. portable']) !!}
-							{!! $errors->first('prenomUsers', '<small class="help-block">:message</small>') !!}
+						<div class="form-group">
+							<p>Nom : {{ $user->name }}
+							<p>Prénom : {{ $user->prenomUsers }}</p>
+							<p>Email : {{ $user->email }}</p>
+							<p>Pseudo : {{ $user->pseudoUsers }}</p>
+							Date de naissance : {{ $user->dateNaissanceUsers }}
 						</div>
-						Téléphone fixe
+						<div class="form-group {!! $errors->has('telPortUsers') ? 'has-error' : '' !!}">
+							Téléphone portable*
+							{!! Form::text('telPortUsers', null, ['class' => 'form-control']) !!}
+							{!! $errors->first('telPortUsers', '<small class="help-block">:message</small>') !!}
+						</div>
 						<div class="form-group {!! $errors->has('telFixeUsers') ? 'has-error' : '' !!}">
-							{!! Form::text('telFixeUsers', null, ['class' => 'form-control', 'placeholder' => 'Numéro de tel. fixe']) !!}
-							{!! $errors->first('prenomUsers', '<small class="help-block">:message</small>') !!}
+							Téléphone fixe
+							{!! Form::text('telFixeUsers', null, ['class' => 'form-control']) !!}
+							{!! $errors->first('telFixeUsers', '<small class="help-block">:message</small>') !!}
 						</div>
 						<div class="form-group {!! $errors->has('photoUsers') ? 'has-error' : '' !!}">
 							Photo de profil

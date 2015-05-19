@@ -12,8 +12,9 @@ class UserCreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'max:255|unique:users',
-			'email' => 'email|max:255|unique:users',
+			'name' => 'required|max:20|unique:users',
+			'email' => 'required|email|max:255|unique:users',
+			'pseudoUsers' => 'required|max:20',
 			'password' => 'confirmed|min:6'
 		];
 	}

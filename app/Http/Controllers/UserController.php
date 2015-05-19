@@ -47,7 +47,7 @@ class UserController extends Controller {
 	{
 		$this->setAdmin($request);
 		$user = $this->userRepository->store($request->all());
-		return redirect('user')->withOk("L'utilisateur " . $user->name . " a été créé.");
+		return redirect('user')->withOk("L'utilisateur " . $user->pseudoUsers . " a été créé.");
 	}
 
 	/**
@@ -91,7 +91,7 @@ class UserController extends Controller {
 		}else{
 			$this->setAdmin($request);
 			$this->userRepository->update($id, $request->all());
-			return redirect('user')->withOk("L'utilisateur " . $request->input('name') . " a été modifié.");
+			return redirect('user')->withOk("L'utilisateur " . $request->input('pseudoUsers') . " a été modifié.");
 		}
 	}
 

@@ -13,7 +13,6 @@
 						{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
 					  	{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 					</div>
-					
 					<div class="form-group {!! $errors->has('prenomUsers') ? 'has-error' : '' !!}">
 					  	Prénom :
 						{!! Form::text('prenomUsers', null, ['class' => 'form-control', 'placeholder' => 'Prénom']) !!}
@@ -34,7 +33,7 @@
 					
 					<div class="form-group {!! $errors->has('dateNaissanceUsers') ? 'has-error' : '' !!}">
 					  	Date de naissance :
-						{!! Form::date('dateNaissanceUsers',  $user->dateNaissanceUsers) !!}
+						{!! Form::date('dateNaissanceUsers',  $user->dateNaissanceUsers, ['class' => 'form-control']) !!}
 					  	{!! $errors->first('dateNaissanceUsers', '<small class="help-block">:message</small>') !!}
 					</div>
 					

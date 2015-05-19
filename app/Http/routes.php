@@ -24,6 +24,11 @@ Route::get('myaccount', function()
     return View::make('monCompte');
 });
 
+Route::get('myvehicule', function()
+{
+    return View::make('monVehicule');
+});
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

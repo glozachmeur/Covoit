@@ -6,18 +6,19 @@
 		<div class="panel panel-primary">	
 			<div class="panel-heading">Fiche d'utilisateur</div>
 			<div class="panel-body"> 
-				<p>Nom : {{ $user->name }}</p>
-				<p>Prénom : {{ $user->prenomUsers }}</p>
-				<p>Pseudo : {{ $user->pseudoUsers }}</p>
-				<p>Email : {{ $user->email }}</p>
-				<p>Date de naissance : {{ $user->dateNaissanceUsers }}</p>
+				Voici les informations du compte sélectionné :
+				<li>Nom : {{ $user->name }}</li>
+				<li>Prénom : {{ $user->prenomUsers }}</li>
+				<li>Pseudo : {{ $user->pseudoUsers }}</li>
+				<li>Email : {{ $user->email }}</li>
+				<li>Date de naissance : {{ $user->dateNaissanceUsers }}</li>
 				
 				<?php if($user->telPortUsers !=''){ ?>
-					<p>Numérode tel. portable : {{ $user->telPortUsers }}</p>				
+					<li>Numéro de tel. portable : {{ $user->telPortUsers }}</li>				
 				<?php } ?>
 				
 				<?php if($user->telFixeUsers !=''){ ?>
-					<p>Numérode tel. fixe : {{ $user->telFixeUsers }}</p>				
+					<li>Numéro de tel. fixe : {{ $user->telFixeUsers }}</li>				
 				<?php } ?>
 				
 				@if($user->admin == 1)

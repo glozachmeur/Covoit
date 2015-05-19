@@ -6,13 +6,16 @@
 		<div class="panel panel-primary">	
 			<div class="panel-heading">Fiche véhicule</div>
 			<div class="panel-body"> 
-				<p>Nom  du véhicule: {{ $vehicule->nomVehicule }}</p>
+				Voici les informations du véhicule sélectionné :
+				<li>Nom  du véhicule: {{ $vehicule->nomVehicule }}</li>
 				
-				<p>Marque du véhicule : {{ $vehicule->marqueVehicule }}</p>
+				<li>Marque du véhicule : {{ $vehicule->marqueVehicule }}</li>
 				
-				<p>Couleur du véhicule : {{ $vehicule->couleurVehicule }}</p>
+				<li>Couleur du véhicule : {{ $vehicule->couleurVehicule }}</li>
 
-				<p>Nb de places diponibles : {{ $vehicule->nbPlacesVehicule }}</p>
+				<li>Nb de places diponibles : {{ $vehicule->nbPlacesVehicule }}</li>
+				
+				<li>Date de mise en service : {{ $vehicule->dateMiseEnService }}</li>
 			</div>
 		</div>				
 		<a href="javascript:history.back()" class="btn btn-primary">

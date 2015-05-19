@@ -19,8 +19,15 @@ class CreateTVehiculeTable extends Migration {
 			$table->string('marqueVehicule', 15);
 			$table->string('nomVehicule', 25);
 			$table->date('dateMiseEnService');
-			$table->integer('nbPlaces');
+			$table->integer('nbPlacesVehicule');
+			$table->integer('user_id')->unsigned();
 			
+			$table->foreign('user_id')
+				  ->references('id')
+				  ->on('users')
+				  ->onDelete('restrict')
+				  ->onUpdate('restrict');
+				  
 			$table->timestamps();
 			$table->engine = 'InnoDB';
 		});

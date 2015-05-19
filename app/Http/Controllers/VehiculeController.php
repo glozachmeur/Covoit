@@ -4,6 +4,7 @@ use App\Http\Requests\VehiculeCreateRequest;
 use App\Http\Requests\VehiculeUpdateRequest;
 
 use App\Repositories\VehiculeRepository;
+use App\Repositories\UserRepository;
 
 use Illuminate\Http\Request;
 class VehiculeController extends Controller {
@@ -44,8 +45,13 @@ class VehiculeController extends Controller {
 	 */
 	public function store(vehiculeCreateRequest $request)
 	{
-		$vehicule = $this->vehiculeRepository->store($request->all());
-		return redirect('vehicule')->withOk("Le véhicule " . $vehicule->name . " a été créé.");
+		if($request->input('fromVehicule')!==null){
+			$vehicule = $this->vehiculeRepository->store($request->all());
+			return redirect('myvehicule')->withOk("Votre véhicule a bien été créé et ajouté à votre compte.");
+		}else{
+			$vehicule = $this->vehiculeRepository->store($request->all());
+			return redirect('vehicule')->withOk("Le véhicule " . $vehicule->name . " a bien été créé.");
+		}
 	}
 
 	/**
@@ -65,6 +71,7 @@ class VehiculeController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
+	 
 	 * @param  int  $id
 	 * @return Response
 	 */
@@ -83,8 +90,7 @@ class VehiculeController extends Controller {
 	 */
 	public function update(vehiculeUpdateRequest $request, $id)
 	{
-    	$this->vehiculeRepository->update($id, $request->all());
-		
+		$this->vehiculeRepository->update($id, $request->all());
 		return redirect('vehicule')->withOk("Le véhicule " . $request->input('nomVehicule') . " a été modifié.");
 	}
 

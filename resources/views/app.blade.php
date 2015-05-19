@@ -34,8 +34,15 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/home') }}">Accueil</a></li>
-					<li><a href="{{ url('/user') }}">Administration</a></li>
-					<li><a href="{{ url('/vehicule') }}">Véhicules</a></li>
+					@if(Auth::user() != null)
+						<li><a href="{{ url('/findCar') }}">Trouver un trajet</a></li>
+						<li><a href="{{ url('/shareCar') }}">Proposer un trajet</a></li>
+						@if(Auth::user()->admin)
+							<li><a href="{{ url('/user') }}">Administration</a></li>
+							<li><a href="{{ url('/vehicule') }}">Véhicules</a></li>
+						@endif
+					@endif
+					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -47,6 +54,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->pseudoUsers }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{ url('/myaccount') }}">Mon compte</a></li>
+								<li><a href="{{ url('/myvehicule') }}">Mon véhicule</a></li>
 								<li><a href="{{ url('/auth/logout') }}">Déconnexion</a></li>
 							</ul>
 						</li>
