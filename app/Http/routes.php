@@ -33,3 +33,6 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+//route trajet
+Route::ressource('trajet','TrajetController');
