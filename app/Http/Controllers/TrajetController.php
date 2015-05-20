@@ -8,8 +8,8 @@ use App\Repositories\VehiculeRepository;
 use App\Repositories\UserRepository;
 
 use Illuminate\Http\Request;
-class VehiculeController extends Controller {
-    protected $vehiculeRepository;
+class TrajetController extends Controller {
+    protected $trajetRepository;
     protected $nbrPerPage = 4;
 
     public function __construct(TrajetRepository $trajetRepository)
@@ -26,7 +26,7 @@ class VehiculeController extends Controller {
     {
         $trajet = $this->trajetRepository->getPaginate($this->nbrPerPage);
         $links = str_replace('/?', '?', $trajet->render());
-        return view('Trajet/indexTrajet', compact('trajet', 'links'));
+        return view('Trajet/Trajet', compact('trajet', 'links'));
     }
 
     /**

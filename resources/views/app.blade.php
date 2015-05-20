@@ -35,7 +35,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/home') }}">Accueil</a></li>
 					@if(Auth::user() != null)
-						<li><a href="{{ url('/findCar') }}">Trouver un trajet</a></li>
+						<li><a href="{{ url('/trajet') }}">Trouver un trajet</a></li>
 						<li><a href="{{ url('/shareCar') }}">Proposer un trajet</a></li>
 						@if(Auth::user()->admin)
 							<li><a href="{{ url('/user') }}">Administration</a></li>

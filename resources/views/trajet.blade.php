@@ -1,1 +1,0 @@
-/Users/jrfoehn/Documents/Code/Covoit/resources/views/trajet.blade.php

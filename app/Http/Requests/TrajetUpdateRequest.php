@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class TrajetCreateRequest extends Request {
+class TrajetUpdateRequest extends Request {
 
     public function authorize()
     {
@@ -15,7 +15,7 @@ class TrajetCreateRequest extends Request {
         return [
             'villeDepartTrajet' => 'max:255',
             'villeArrivéeTrajet' => 'max:255',
-            'nbPlaces' => 'max:1'
+            'nbPlaces' => 'max:1',
             'pppTrajet' => 'max:2'
         ];
     }

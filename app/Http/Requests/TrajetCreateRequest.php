@@ -15,7 +15,7 @@ class TrajetCreateRequest extends Request {
         return [
             'villeDepartTrajet' => 'required|max:255',
             'villeArrivéeTrajet' => 'required|max:255',
-            'nbPlaces' => 'required|max:1'
+            'nbPlaces' => 'required|max:1',
             'pppTrajet' => 'required|max:2'
         ];
     }
