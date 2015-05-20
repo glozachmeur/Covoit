@@ -23,13 +23,11 @@
 					  	{!! Form::text('couleurVehicule', null, ['class' => 'form-control', 'placeholder' => 'Couleur du véhicule']) !!}
 					  	{!! $errors->first('couleurVehicule', '<small class="help-block">:message</small>') !!}
 					</div>
-					
 					<div class="form-group {!! $errors->has('dateMiseEnService') ? 'has-error' : '' !!}">
 						Date de mise en service :
 					  	{!! Form::date('dateMiseEnService', null, ['class' => 'form-control']) !!}
 					  	{!! $errors->first('dateMiseEnService', '<small class="help-block">:message</small>') !!}
 					</div>
-					
 					<div class="form-group {!! $errors->has('nbPlacesVehicule') ? 'has-error' : '' !!}">
 						Nombre de places disponibles : 
 					  	{!! Form::selectRange('nbPlacesVehicule', 1, 5, null, ['class' => 'form-control', 'placeholder' => 'Nombre de places disponibles']) !!}
