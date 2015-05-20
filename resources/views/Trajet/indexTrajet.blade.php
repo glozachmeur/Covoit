@@ -21,7 +21,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($trajets as $trajet)
+                @foreach ($trajet as $trajet)
                     <tr>
                         <td>{!! $trajet->id !!}</td>
                         <td class="text-primary"><strong>{!! $trajet->villeDepartTRajet !!}</strong></td>

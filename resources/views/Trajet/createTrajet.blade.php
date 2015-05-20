@@ -1,27 +1,27 @@
-@extends('app')
+@extends('template')
 
 @section('contenu')
 <div class="col-sm-offset-4 col-sm-4">
     <br>
     <div class="panel panel-primary">
-        <div class="panel-heading">Modification d'un trajet</div>
+        <div class="panel-heading">Créer un trajet</div>
         <div class="panel-body">
             <div class="col-sm-12">
-                {!! Form::open(['url' => 'trajet', 'method' => 'post', 'class' => 'form-horizontal panel']) !!}
+                {!! Form::open(['url' => 'trajet', 'method' => 'post', 'class' => 'form-horizontal']) !!}
                 <div class="form-group {!! $errors->has('villeDepartTrajet') ? 'has-error' : '' !!}">
                     Nom :
-                    {!! Form::text('villeDepartTrajet', null, ['class' => 'form-control', 'placeholder' => 'Ville de départ']) !!}
+                    {!! Form::text('villeDepartTrajet', null, ['class' => 'form-control', 'placeholder' => 'Départ']) !!}
                     {!! $errors->first('villeDepartTrajet', '<small class="help-block">:message</small>') !!}
                 </div>
                 <div class="form-group {!! $errors->has('villeArriveeTrajet') ? 'has-error' : '' !!}">
                     Marque :
-                    {!! Form::text('villeArriveeTrajet', null, ['class' => 'form-control', 'placeholder' => 'Ville d'arrivé']) !!}
+                    {!! Form::text('villeArriveeTrajet', null, ['class' => 'form-control', 'placeholder' => 'Arrivée']) !!}
                     {!! $errors->first('villeArriveeTrajet', '<small class="help-block">:message</small>') !!}
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Date du trajet*</label>
                     <div class="col-md-6">
-                        <input type="date" class="form-control" name="dateTrajet" value="{{ old('dateTrajet') }}">
+                        <input type="date" class="form-control" name="dateDebutTrajet" value="{{ old('dateDebutTrajet') }}">
                     </div>
                 </div>
                 <div class="form-group {!! $errors->has('nbPlacesTrajet') ? 'has-error' : '' !!}">
@@ -42,10 +42,4 @@
         <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
     </a>
 </div>
-@stop<?php
-/**
- * Created by PhpStorm.
- * User: jrfoehn
- * Date: 20/05/15
- * Time: 15:13
- */
+@stop

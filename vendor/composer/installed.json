@@ -3472,5 +3472,52 @@
         ],
         "description": "Symfony Yaml Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "kyslik/view-clear",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Kyslik/view-clear.git",
+            "reference": "f3f1c46eb8a963aa31e0935018bd7b2b22ed3a7b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Kyslik/view-clear/zipball/f3f1c46eb8a963aa31e0935018bd7b2b22ed3a7b",
+            "reference": "f3f1c46eb8a963aa31e0935018bd7b2b22ed3a7b",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "5.0.*",
+            "php": ">=5.4.0"
+        },
+        "time": "2015-03-04 10:07:34",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Kyslik\\ViewClear": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Martin Kiesel",
+                "email": "martinkiesel@gmail.com"
+            }
+        ],
+        "description": "Simple artisan command to clear view folder in Laravel 5.",
+        "keywords": [
+            "artisan",
+            "clear",
+            "command",
+            "laravel",
+            "laravel5",
+            "view"
+        ]
     }
 ]
