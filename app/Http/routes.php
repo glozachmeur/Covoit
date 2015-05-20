@@ -35,4 +35,4 @@ Route::controllers([
 ]);
 
 //route trajet
-Route::ressource('trajet','TrajetController');
+Route::resource('trajet','TrajetController');
