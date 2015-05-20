@@ -9,12 +9,12 @@
             <div class="col-sm-12">
                 {!! Form::open(['url' => 'trajet', 'method' => 'post', 'class' => 'form-horizontal']) !!}
                 <div class="form-group {!! $errors->has('villeDepartTrajet') ? 'has-error' : '' !!}">
-                    Nom :
+                    Ville de départ :
                     {!! Form::text('villeDepartTrajet', null, ['class' => 'form-control', 'placeholder' => 'Départ']) !!}
                     {!! $errors->first('villeDepartTrajet', '<small class="help-block">:message</small>') !!}
                 </div>
                 <div class="form-group {!! $errors->has('villeArriveeTrajet') ? 'has-error' : '' !!}">
-                    Marque :
+                    Ville d'arrivée :
                     {!! Form::text('villeArriveeTrajet', null, ['class' => 'form-control', 'placeholder' => 'Arrivée']) !!}
                     {!! $errors->first('villeArriveeTrajet', '<small class="help-block">:message</small>') !!}
                 </div>
