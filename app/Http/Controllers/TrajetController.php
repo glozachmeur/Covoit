@@ -26,7 +26,7 @@ class TrajetController extends Controller {
     {
         $trajet = $this->trajetRepository->getPaginate($this->nbrPerPage);
         $links = str_replace('/?', '?', $trajet->render());
-        return view('Trajet/Trajet', compact('trajet', 'links'));
+        return view('Trajet/indexTrajet', compact('trajet', 'links'));
     }
 
     /**
