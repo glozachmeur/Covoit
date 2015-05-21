@@ -24,12 +24,13 @@
                 @foreach ($trajet as $trajet)
                     <tr>
                         <td>{!! $trajet->id !!}</td>
-                        <td class="text-primary"><strong>{!! $trajet->villeDepartTRajet !!}</strong></td>
+                        <td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
+                        <td>{!! link_to_route('trajet.create', 'Nouveau', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
                         <td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
                         <td>{!! link_to_route('trajet.edit', 'Modifier', [$trajet->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
                         <td>
                             {!! Form::open(['method' => 'DELETE', 'route' => ['trajet.destroy', $trajet->id]]) !!}
-                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
+                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce trajet ?\')']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
