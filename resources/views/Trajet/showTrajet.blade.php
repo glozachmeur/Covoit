@@ -10,6 +10,8 @@
             <li>Ville de départ : {{ $trajet->villeDepartTrajet }}</li>
 
             <li>Ville d'arrivée : {{ $trajet->villeArriveeTrajet }}</li>
+			
+            <li>Date du trajet : {{ $trajet->dateDebutTrajet }}</li>
 
             <li>Nombre de places disponibles : {{ $trajet->nbPlace }}</li>
 
