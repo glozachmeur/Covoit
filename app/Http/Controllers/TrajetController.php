@@ -26,7 +26,7 @@ class TrajetController extends Controller {
     {
         $trajet = $this->trajetRepository->getPaginate($this->nbrPerPage);
         $links = str_replace('/?', '?', $trajet->render());
-        return view('Trajet/indexTrajet', compact('trajet', 'links'));
+        return view('trajet/indexTrajet', compact('trajet', 'links'));
     }
 
     /**
@@ -36,7 +36,7 @@ class TrajetController extends Controller {
      */
     public function create()
     {
-        return view('Trajet/createTrajet');
+        return view('trajet/createTrajet');
     }
 
     /**
@@ -66,7 +66,7 @@ class TrajetController extends Controller {
 
         $trajet = $this->trajetRepository->getById($id);
 
-        return view('Trajet/showTrajet',  compact('trajet'));
+        return view('trajet/showTrajet',  compact('trajet'));
     }
 
     /**
@@ -80,7 +80,7 @@ class TrajetController extends Controller {
     {
         $trajet = $this->trajetRepository->getById($id);
 
-        return view('Trajet/editTrajet',  compact('trajet'));
+        return view('trajet/editTrajet',  compact('trajet'));
     }
 
     /**
