@@ -44,6 +44,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function trajet()
     {
-
+		return $this->hasMany('App\Trajet');
     }
 }

@@ -14,6 +14,7 @@
 //route la gestion des utilisateurs
 Route::resource('user', 'UserController');
 Route::resource('vehicule', 'VehiculeController');
+
 Route::resource('/', 'HomeController');
 Route::resource('home', 'HomeController');
 

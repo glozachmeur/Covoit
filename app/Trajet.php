@@ -4,9 +4,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trajet extends Model {
 
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
     protected $table = 'T_TRAJET';
-
-	protected $fillable = ['villeDepartTrajet', 'villeArriveeTrajet', 'dateTrajet', 'appreciationTrajet', 'nbPlaces', 'pppTrajet', 'user_id'];
+	
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['villeDepartTrajet', 'villeArriveeTrajet', 'dateDebutTrajet', 'nbPlacesTrajet', 'pppTrajet', 'idConducteurTrajet','dureeTrajet'];
 
     public function user()
     {

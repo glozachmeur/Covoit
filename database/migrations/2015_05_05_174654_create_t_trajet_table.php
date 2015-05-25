@@ -15,26 +15,25 @@ class CreateTTrajetTable extends Migration {
 		Schema::create('t_trajet', function(Blueprint $table)
 		{
 			$table->increments('idTrajet');
-			$table->integer('Conducteur')->unsigned();
+			$table->integer('idConducteurTrajet')->unsigned();
 			$table->string('villeDepartTrajet', 25);
 			$table->string('villeArriveeTrajet', 25);
 			$table->date('dateDebutTrajet');
 			$table->time('dureeTrajet');
-			$table->integer('appreciationTrajet')->unsigned();
-			$table->integer('nbPlaces');
+			//$table->integer('appreciationTrajet')->unsigned();
+			$table->integer('nbPlacesTrajet');
 			$table->boolean('statutTrajet')->default(false);
 			$table->integer('pppTrajet');
 			
+			$table->foreign('idConducteurTrajet')
+				  ->references('id')
+				  ->on('users')
+				  ->onDelete('restrict')
+				  ->onUpdate('restrict');
+				  
 			$table->timestamps();
 			$table->engine = 'InnoDB';
 		});
-		
-		Schema::table('t_trajet', function($table) {
-			$table->foreign('Conducteur')->references('id')->on('users');
-			$table->foreign('appreciationTrajet')->references('idAppreciation')->on('T_APPRECIATION');
-			//$table->primary('idTrajet');
-		});
-		
 	}
 
 	/**

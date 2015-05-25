@@ -11,12 +11,9 @@ class TrajetUpdateRequest extends Request {
 
     public function rules()
     {
-        $id = $this->segment(2);
         return [
             'villeDepartTrajet' => 'max:255',
-            'villeArrivéeTrajet' => 'max:255',
-            'nbPlaces' => 'max:1',
-            'pppTrajet' => 'max:2'
+            'villeArriveeTrajet' => 'max:255',
         ];
     }
 

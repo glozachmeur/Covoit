@@ -46,13 +46,10 @@ class TrajetController extends Controller {
      */
     public function store(trajetCreateRequest $request)
     {
-        if($request->input('fromTrajet')!==null){
+       
             $trajet = $this->trajetRepository->store($request->all());
-            return redirect('mytrajet')->withOk("Votre trajet a bien été créé.");
-        }else{
-            $trajet = $this->trajetRepository->store($request->all());
-            return redirect('trajet')->withOk("Le trajet " . $trajet->name . " a bien été créé.");
-        }
+            return redirect('trajet')->withOk("Le trajet a bien été créé.");
+        
     }
 
     /**
@@ -92,7 +89,7 @@ class TrajetController extends Controller {
     public function update(trajetUpdateRequest $request, $id)
     {
         $this->trajetRepository->update($id, $request->all());
-        return redirect('trjaet')->withOk("Le trajet " . $request->input('nomTrajet') . " a été modifié.");
+        return redirect('trjaet')->withOk("Le trajet a été modifié.");
     }
 
     /**
@@ -103,7 +100,7 @@ class TrajetController extends Controller {
      */
     public function destroy($id)
     {
-        $this->trajetRepositorye->destroy($id);
+        $this->trajetRepository->destroy($id);
 
         return redirect()->back();
     }

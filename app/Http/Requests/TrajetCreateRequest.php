@@ -11,13 +11,12 @@ class TrajetCreateRequest extends Request {
 
     public function rules()
     {
-        $id = $this->segment(2);
         return [
             'villeDepartTrajet' => 'required|max:255',
-            'villeArrivéeTrajet' => 'required|max:255',
-            'nbPlaces' => 'required|max:1',
-            'pppTrajet' => 'required|max:2'
-        ];
+            'villeArriveeTrajet' => 'required|max:255',
+            'dureeTrajet' => 'required',
+			'dateDebutTrajet' => 'required',
+			];
     }
 
 }
