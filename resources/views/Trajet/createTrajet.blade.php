@@ -37,7 +37,7 @@
                     {!! $errors->first('dureeTrajet', '<small class="help-block">:message</small>') !!}
                 </div>
                 <div class="form-group {!! $errors->has('pppTrajet') ? 'has-error' : '' !!}">
-                    Prix par passagers :
+                    Prix par passagers (€):
                     {!! Form::selectRange('pppTrajet', 1, 99, null, ['class' => 'form-control']) !!}
                 </div>
 				{!! Form::hidden('idConducteurTrajet', $id) !!}

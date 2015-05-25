@@ -25,7 +25,6 @@
                     <tr>
                         <td>{!! $trajet->id !!}</td>
                         <td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
-                        <td>{!! link_to_route('trajet.create', 'Nouveau', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
                         <td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
                         <td>{!! link_to_route('trajet.edit', 'Modifier', [$trajet->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
                         <td>
