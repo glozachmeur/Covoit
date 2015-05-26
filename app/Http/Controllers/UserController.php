@@ -4,7 +4,8 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 
 use App\Repositories\UserRepository;
-
+use Input;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller {
@@ -86,6 +87,11 @@ class UserController extends Controller {
 	public function update(UserUpdateRequest $request, $id)
 	{
 		if($request->input('fromAccount')!==null){
+			if(Input::file('photo')!==null){
+				include("../public/functions/upload_image.php");
+				$filename = saveImage(Auth::user()->pseudoUsers);
+				$request->merge(['photoUsers' => $filename]);
+			}		
 			$this->userRepository->update($id, $request->all());
 			return redirect('myaccount')->withOk("Votre compte a été modifié.");
 		}else{

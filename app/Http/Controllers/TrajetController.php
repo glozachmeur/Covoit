@@ -101,7 +101,6 @@ class TrajetController extends Controller {
     public function destroy($id)
     {
         $this->trajetRepository->destroy($id);
-
         return redirect()->back();
     }
 }

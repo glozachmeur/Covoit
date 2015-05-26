@@ -30,6 +30,11 @@ Route::get('myvehicule', function()
     return View::make('monVehicule');
 });
 
+Route::get('mytrajet', function()
+{
+    return View::make('mesTrajets');
+});
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

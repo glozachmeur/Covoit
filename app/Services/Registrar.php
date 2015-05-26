@@ -2,6 +2,7 @@
 
 use App\User;
 use Validator;
+use Input;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
 class Registrar implements RegistrarContract {
@@ -34,6 +35,9 @@ class Registrar implements RegistrarContract {
 	 */
 	public function create(array $data)
 	{	
+		include("../public/functions/upload_image.php");
+		$filename = saveImage($data['pseudoUsers']);
+		
 		if(isset($data['telFixeUsers'])){
 			return User::create([
 				'name' => $data['name'],
@@ -44,6 +48,7 @@ class Registrar implements RegistrarContract {
 				'dateNaissanceUsers' => $data['dateNaissanceUsers'],
 				'email' => $data['email'],
 				'password' => $data['password'],
+				'photoUsers' => $filename,
 			]);
 		}else{
 			return User::create([
@@ -54,6 +59,7 @@ class Registrar implements RegistrarContract {
 				'dateNaissanceUsers' => $data['dateNaissanceUsers'],
 				'email' => $data['email'],
 				'password' => $data['password'],
+				'photoUsers' => $filename,
 			]);
 		}
 	}

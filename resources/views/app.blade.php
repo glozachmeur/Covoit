@@ -36,7 +36,7 @@
 					<li><a href="{{ url('/home') }}">Accueil</a></li>
 					@if(Auth::user() != null)
 						<li><a href="{{ url('/') }}">Trouver un trajet</a></li>
-						<li><a href="{{ url('trajet') }}">Proposer un trajet</a></li>
+						<li><a href="{{ url('/trajet/create') }}">Proposer un trajet</a></li>
 						@if(Auth::user()->admin)
 							<li><a href="{{ url('/user') }}">Administration</a></li>
 							<li><a href="{{ url('/vehicule') }}">Véhicules</a></li>

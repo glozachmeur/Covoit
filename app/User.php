@@ -1,11 +1,11 @@
-<?php namespace App;
+<?php 
+namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -42,8 +42,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasOne('App\Vehicule');
 	}
 
-    public function trajet()
+    public function trajets()
     {
-		return $this->hasMany('App\Trajet');
+		return $this->hasMany('App\Trajet','idConducteurTrajet');
     }
 }

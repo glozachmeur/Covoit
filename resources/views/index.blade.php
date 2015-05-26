@@ -2,7 +2,7 @@
 
 @section('contenu')
     <br>
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-md-offset-2 col-sm-8">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif

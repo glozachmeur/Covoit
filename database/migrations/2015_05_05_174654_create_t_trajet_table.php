@@ -14,7 +14,7 @@ class CreateTTrajetTable extends Migration {
 	{
 		Schema::create('t_trajet', function(Blueprint $table)
 		{
-			$table->increments('idTrajet');
+			$table->increments('id');
 			$table->integer('idConducteurTrajet')->unsigned();
 			$table->string('villeDepartTrajet', 25);
 			$table->string('villeArriveeTrajet', 25);
@@ -28,8 +28,8 @@ class CreateTTrajetTable extends Migration {
 			$table->foreign('idConducteurTrajet')
 				  ->references('id')
 				  ->on('users')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 				  
 			$table->timestamps();
 			$table->engine = 'InnoDB';

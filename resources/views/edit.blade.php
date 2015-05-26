@@ -61,7 +61,8 @@
 							</label>
 						</div>
 					</div>
-						{!! Form::submit('Modifier', ['class' => 'btn btn-primary pull-right']) !!}
+					
+					{!! Form::submit('Modifier', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}
 				</div>
 			</div>

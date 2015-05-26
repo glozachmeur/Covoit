@@ -25,8 +25,8 @@ class CreateTVehiculeTable extends Migration {
 			$table->foreign('user_id')
 				  ->references('id')
 				  ->on('users')
-				  ->onDelete('restrict')
-				  ->onUpdate('restrict');
+				  ->onDelete('cascade')
+				  ->onUpdate('cascade');
 				  
 			$table->timestamps();
 			$table->engine = 'InnoDB';

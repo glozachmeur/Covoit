@@ -18,7 +18,7 @@
 						</div>
 					@endif
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+					<form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="{{ url('/auth/register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
@@ -81,6 +81,13 @@
 							<label class="col-md-4 control-label">Confirmer mot de passe*</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password_confirmation">
+							</div>
+						</div>
+						
+						<div class="form-group {!! $errors->has('photoUsers') ? 'has-error' : '' !!}">
+						<label class="col-md-4 control-label">Photo de profil*</label>
+							<div class="col-md-6">
+								<input type="file" class="form-control" name="photo">
 							</div>
 						</div>
 
