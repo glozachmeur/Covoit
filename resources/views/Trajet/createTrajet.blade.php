@@ -48,7 +48,7 @@
 					{!! Form::submit('Créer trajet', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}
 				@else
-					<p>Attention, vous ne pouvez pas proposer de trajets, vous n'avez pas encore renseigné votre véhicule.<br/>
+					<p class="col-md-2">Attention, vous ne pouvez pas proposer de trajets, vous n'avez pas encore renseigné votre véhicule.<br/>
 					pour le faire, veuillez aller dans l'espace "Mon véhicule".</p>
 				@endif
             </div>

@@ -14,7 +14,7 @@ class TrajetCreateRequest extends Request {
         return [
             'villeDepartTrajet' => 'required|max:255',
             'villeArriveeTrajet' => 'required|max:255',
-            'dureeTrajet' => 'required',
+            'heureDepartTrajet' => 'required',
 			'dateDebutTrajet' => 'required',
 			];
     }
