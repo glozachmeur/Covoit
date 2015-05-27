@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('contenu')
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-md-offset-2 col-md-8">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
@@ -34,10 +34,8 @@
 						</div>
 						
 						<div class="form-group {!! $errors->has('photoUsers') ? 'has-error' : '' !!}">
-						<label class="col-md-4 control-label">Changer de photo de profil*</label>
-							<div class="col-md-6">
-								<input type="file" class="form-control" name="photo">
-							</div>
+						Changer de photo de profil
+							<input type="file" class="form-control" name="photo">
 						</div>
 						{!!  Form::hidden('fromAccount', true) !!}
 						{!! Form::submit('Enregistrer informations', ['class' => 'btn btn-primary pull-right']) !!}

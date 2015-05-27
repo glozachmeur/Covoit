@@ -16,7 +16,7 @@ class Trajet extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['villeDepartTrajet', 'villeArriveeTrajet', 'dateDebutTrajet', 'nbPlacesTrajet', 'pppTrajet', 'idConducteurTrajet','dureeTrajet'];
+	protected $fillable = ['villeDepartTrajet', 'villeArriveeTrajet', 'dateDebutTrajet', 'nbPlacesTrajet', 'pppTrajet', 'idConducteurTrajet','heureDepartTrajet'];
 
     public function user()
     {

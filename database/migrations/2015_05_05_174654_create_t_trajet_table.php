@@ -19,7 +19,7 @@ class CreateTTrajetTable extends Migration {
 			$table->string('villeDepartTrajet', 25);
 			$table->string('villeArriveeTrajet', 25);
 			$table->date('dateDebutTrajet');
-			$table->time('dureeTrajet');
+			$table->time('heureDepartTrajet');
 			//$table->integer('appreciationTrajet')->unsigned();
 			$table->integer('nbPlacesTrajet');
 			$table->boolean('statutTrajet')->default(false);
