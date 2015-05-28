@@ -17,7 +17,8 @@ class UserUpdateRequest extends Request {
 			'prenomUsers' => 'max:255',
 			'email' => 'email|max:255|',
 			'pseudoUsers' => 'max:20',
-			'telPortUsers' => 'required|max:13'
+			'telPortUsers' => 'required|max:13',
+			'photo' => 'image'
 		];
 	}
 

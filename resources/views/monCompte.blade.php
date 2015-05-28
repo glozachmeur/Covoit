@@ -28,14 +28,15 @@
 							{!! Form::text('telFixeUsers', null, ['class' => 'form-control']) !!}
 							{!! $errors->first('telFixeUsers', '<small class="help-block">:message</small>') !!}
 						</div>
-						<div class="form-group {!! $errors->has('photoUsers') ? 'has-error' : '' !!}">
+						<div class="form-group">
 							Photo de profil actuelle :
 							<img src="../../public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
 						</div>
 						
-						<div class="form-group {!! $errors->has('photoUsers') ? 'has-error' : '' !!}">
+						<div class="form-group {!! $errors->has('photo') ? 'has-error' : '' !!}">
 						Changer de photo de profil
 							<input type="file" class="form-control" name="photo">
+							{!! $errors->first('photo', '<small class="help-block">:message</small>') !!}
 						</div>
 						{!!  Form::hidden('fromAccount', true) !!}
 						{!! Form::submit('Enregistrer informations', ['class' => 'btn btn-primary pull-right']) !!}

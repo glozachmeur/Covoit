@@ -15,7 +15,8 @@ class UserCreateRequest extends Request {
 			'name' => 'required|max:20|unique:users',
 			'email' => 'required|email|max:255|unique:users',
 			'pseudoUsers' => 'required|max:20',
-			'password' => 'confirmed|min:6'
+			'password' => 'confirmed|min:6',
+			'photo' => 'required|image'
 		];
 	}
 

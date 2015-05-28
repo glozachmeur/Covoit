@@ -2,7 +2,7 @@
 
 @section('contenu')
     <br>
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-3 col-sm-6">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
@@ -15,6 +15,7 @@
 					<tr>
 						<th>#</th>
 						<th>Nom</th>
+						<th>Propriétaire</th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -25,6 +26,7 @@
 						<tr>
 							<td>{!! $vehicule->id !!}</td>
 							<td class="text-primary"><strong>{!! $vehicule->nomVehicule !!}</strong></td>
+							<td>{!! $vehicule->user->pseudoUsers !!}</td>
 							<td>{!! link_to_route('vehicule.show', 'Voir', [$vehicule->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 							<td>{!! link_to_route('vehicule.edit', 'Modifier', [$vehicule->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 							<td>
