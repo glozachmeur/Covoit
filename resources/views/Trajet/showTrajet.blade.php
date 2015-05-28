@@ -13,9 +13,11 @@
 			
             <li>Date du trajet : {{ $trajet->dateDebutTrajet }}</li>
 
-            <li>Nombre de places disponibles : {{ $trajet->nbPlace }}</li>
+            <li>Heure de départ : {{ $trajet->heureDepartTrajet }}</li>
 
-            <li>Prix par personne : {{ $trajet->nbPlacesVehicule }}</li>
+            <li>Prix par personne : {{ $trajet->pppTrajet }}</li>
+			
+			<li>Nombres de places disponibles :{{ $trajet->nbPlacesTrajet }}</li>
         </div>
     </div>
     <a href="javascript:history.back()" class="btn btn-primary">

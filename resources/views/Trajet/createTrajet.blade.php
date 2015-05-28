@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('contenu')
-<div class="col-sm-offset-4 col-sm-4">
+<div class="col-sm-offset-3 col-sm-6">
     @if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 	@endif
@@ -11,7 +11,6 @@
             <div class="col-sm-12">
 				@if(isset(Auth::user()->vehicule->nomVehicule))
 					<?php $id = Auth::user()->id; ?>
-					<p>En tant que conducteur, vous pouvez proposer des trajets.</p><br/>
 					{!! Form::open(['url' => 'trajet', 'method' => 'post', 'class' => 'form-horizontal']) !!}
 					<div class="form-group {!! $errors->has('villeDepartTrajet') ? 'has-error' : '' !!}">
 						Ville de départ* :

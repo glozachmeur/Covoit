@@ -24,9 +24,9 @@ class TrajetController extends Controller {
      */
     public function index()
     {
-        $trajet = $this->trajetRepository->getPaginate($this->nbrPerPage);
-        $links = str_replace('/?', '?', $trajet->render());
-        return view('trajet/indexTrajet', compact('trajet', 'links'));
+        $trajets = $this->trajetRepository->getPaginate($this->nbrPerPage);
+        $links = str_replace('/?', '?', $trajets->render());		
+        return view('trajet/indexTrajet', compact('trajets', 'links'));
     }
 
     /**
@@ -48,7 +48,7 @@ class TrajetController extends Controller {
     {
        
             $trajet = $this->trajetRepository->store($request->all());
-            return redirect('trajet')->withOk("Le trajet a bien été créé.");
+         return redirect('trajet')->withOk("Le trajet a bien été créé.");
         
     }
 
@@ -89,7 +89,7 @@ class TrajetController extends Controller {
     public function update(trajetUpdateRequest $request, $id)
     {
         $this->trajetRepository->update($id, $request->all());
-        return redirect('trjaet')->withOk("Le trajet a été modifié.");
+        return redirect('trajet')->withOk("Le trajet a été modifié.");
     }
 
     /**

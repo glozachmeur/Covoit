@@ -8,7 +8,7 @@
 		@endif
 		
 		
-			@if(Auth::user()->admin==1){
+			@if(Auth::user()->admin==1)
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">Liste des utilisateurs</h3>

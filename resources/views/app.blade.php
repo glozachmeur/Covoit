@@ -9,7 +9,6 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,14 +34,19 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/home') }}">Accueil</a></li>
 					@if(Auth::user() != null)
-						<li><a href="{{ url('/') }}">Trouver un trajet</a></li>
+						<li><a href="{{ url('/findtrajet') }}">Trouver un trajet</a></li>
 						<li><a href="{{ url('/trajet/create') }}">Proposer un trajet</a></li>
 						@if(Auth::user()->admin)
-							<li><a href="{{ url('/user') }}">Administration</a></li>
-							<li><a href="{{ url('/vehicule') }}">Véhicules</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administration<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="{{ url('/user') }}">Espace utilisateurs</a></li>
+									<li><a href="{{ url('/trajet') }}">Espace trajet</a> </li>
+									<li><a href="{{ url('/vehicule') }}">Espace véhicule</a></li>
+								</ul>
+							</li>
 						@endif
 					@endif
-					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

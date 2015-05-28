@@ -32,8 +32,25 @@ Route::get('myvehicule', function()
 
 Route::get('mytrajet', function()
 {
-    return View::make('mesTrajets');
+    return View::make('Trajet/mesTrajets');
 });
+
+Route::get('selecttrajet', function()
+{
+    return View::make('Trajet/selectTrajet');
+});
+
+Route::get('findtrajet', function()
+{
+    return View::make('Trajet/findTrajet');
+});
+
+Route::post('findtrajet', function()
+{
+    return View::make('Trajet/findTrajet');
+});
+
+Route::resource('find', 'TrajetController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

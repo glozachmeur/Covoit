@@ -2,7 +2,7 @@
 
 @section('contenu')
     <br>
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-2 col-sm-8">
         @if(session()->has('ok'))
             <div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
         @endif
@@ -12,27 +12,31 @@
             </div>
             <table class="table">
                 <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
+					<tr>
+						<th>#</th>
+						<th>Ville de départ</th>
+						<th>Ville d'arrivée</th>
+						<th>Date</th>
+						<th>Heure de départ</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
                 <tbody>
-                @foreach ($trajet as $trajet)
+                @foreach ($trajets as $trajet)
                     <tr>
-                        <td>{!! $trajet->idTrajet !!}</td>
-                        <td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
-                        <td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-                        <td>{!! link_to_route('trajet.edit', 'Modifier', [$trajet->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
-                        <td>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['trajet.destroy', $trajet->id]]) !!}
-                            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce trajet ?\')']) !!}
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
+						<td>{!! $trajet->id !!}</td>
+						<td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
+						<td class="text-primary"><strong>{!! $trajet->villeArriveeTrajet !!}</strong></td>
+						<td class="text-primary"><strong>{!! $trajet->dateDebutTrajet !!}</strong></td>
+						<td class="text-primary"><strong>{!! $trajet->heureDepartTrajet !!}</strong></td>
+						<td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+						<td>
+							{!! Form::open(['method' => 'DELETE', 'route' => ['trajet.destroy', $trajet->id]]) !!}
+							{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce trajet ?\')']) !!}
+							{!! Form::close() !!}
+						</td>
+					</tr>
                 @endforeach
                 </tbody>
             </table>
