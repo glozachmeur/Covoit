@@ -32,7 +32,6 @@
 							Photo de profil actuelle :
 							<img src="../../public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
 						</div>
-						
 						<div class="form-group {!! $errors->has('photo') ? 'has-error' : '' !!}">
 						Changer de photo de profil
 							<input type="file" class="form-control" name="photo">

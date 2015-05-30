@@ -24,6 +24,7 @@ class Registrar implements RegistrarContract {
 			'dateNaissanceUsers' => 'required',
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
+			'photo' => 'required|image',
 		]);
 	}
 

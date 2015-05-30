@@ -2,7 +2,7 @@
 
 use App\Http\Requests\TrajetCreateRequest;
 use App\Http\Requests\TrajetUpdateRequest;
-
+use Input;
 use App\Repositories\TrajetRepository;
 use App\Repositories\VehiculeRepository;
 use App\Repositories\UserRepository;
@@ -46,9 +46,12 @@ class TrajetController extends Controller {
      */
     public function store(trajetCreateRequest $request)
     {
-       
-            $trajet = $this->trajetRepository->store($request->all());
-         return redirect('trajet')->withOk("Le trajet a bien été créé.");
+		 if(Input::get('fromUser')){
+         $trajet = $this->trajetRepository->store($request->all());
+		 return redirect('mytrajet')->withOk("Le trajet a bien été créé.");
+		 }
+		 return redirect('trajet')->withOk("Le trajet a bien été créé.");
+
         
     }
 

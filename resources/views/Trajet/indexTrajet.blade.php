@@ -18,18 +18,27 @@
 						<th>Ville d'arrivée</th>
 						<th>Date</th>
 						<th>Heure de départ</th>
+						<th>Nombre de places</th>
 						<th></th>
 						<th></th>
 					</tr>
 				</thead>
                 <tbody>
                 @foreach ($trajets as $trajet)
+					<?php
+						if($trajet->nbPlacesTrajet !=0){
+							$nbPlaces = $trajet->nbPlacesTrajet;
+						}else{
+							$nbPlaces = "Complet";
+						}
+					?>
                     <tr>
 						<td>{!! $trajet->id !!}</td>
 						<td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
 						<td class="text-primary"><strong>{!! $trajet->villeArriveeTrajet !!}</strong></td>
 						<td class="text-primary"><strong>{!! $trajet->dateDebutTrajet !!}</strong></td>
 						<td class="text-primary"><strong>{!! $trajet->heureDepartTrajet !!}</strong></td>
+						<td class="text-primary"><strong>{!!  $nbPlaces !!}</strong></td>
 						<td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 						<td>
 							{!! Form::open(['method' => 'DELETE', 'route' => ['trajet.destroy', $trajet->id]]) !!}

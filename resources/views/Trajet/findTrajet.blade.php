@@ -1,11 +1,4 @@
 @extends('template')
-<?php
-function makeList(){
-	$villedep = Input::get('villeDepartTrajet');
-	echo $villedep;
-}
-?>
-
 
 @section('contenu')
 <div class="col-sm-offset-2 col-sm-8">
@@ -21,7 +14,7 @@ function makeList(){
 			$villeDep= $editeurs = DB::table('T_TRAJET')->lists('villeDepartTrajet');
 			$villeArr= $editeurs = DB::table('T_TRAJET')->lists('villeArriveeTrajet');
 			?>
-				{!! Form::open(array('url' => 'findtrajet', 'method' => 'post')) !!}
+				{!! Form::open() !!}
 				
 				<div class="form-group {!! $errors->has('villeDepartTrajet') ? 'has-error' : '' !!}">
 						Ville de départ* :
@@ -47,10 +40,11 @@ function makeList(){
 						$arrivee=Input::get('villeArriveeTrajet');
 						$date=Input::get('dateDebutTrajet');
 						$trajets = App\Trajet::all();
+						$nbRes=0;
 					?>
 					
 					<br/><br/>
-					<p>Voici les trajets trouvés.</p>
+					<p>Résultat de la recherche :</p>
 					<table class="table">
 						<thead>
 							<tr>
@@ -64,8 +58,9 @@ function makeList(){
 						</thead>
 						<tbody>
 						@foreach ($trajets as $trajet)
-							@if($date==null)
+							@if($date==null && $trajet->nbPlacesTrajet >0 && $trajet->idConducteurTrajet != Auth::user()->id)
 								@if($trajet->villeDepartTrajet == $villeDep[$depart] && $trajet->villeArriveeTrajet == $villeArr[$arrivee])
+									<?php $nbRes++; ?>
 									<tr>
 										<td>{!! $trajet->id !!}</td>
 										<td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
@@ -73,25 +68,50 @@ function makeList(){
 										<td class="text-primary"><strong>{!! $trajet->dateDebutTrajet !!}</strong></td>
 										<td class="text-primary"><strong>{!! $trajet->heureDepartTrajet !!}</strong></td>
 										<td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-										<td>{!! link_to_route('trajet.show', 'Sélectionner', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+										<td>
+											{!! Form::open(array('url' => '/confirmtrajet')) !!}
+											Nb de places
+											{!! Form::selectRange('nbPlacesTrajetReservation', 1, $trajet->nbPlacesTrajet, null, ['class' => 'form-control', 'placeholder' => 'Nombre de places disponibles']) !!}
+										</td>
+										<td>
+											{!! Form::hidden('trajet_id', $trajet->id) !!}
+											{!! Form::hidden('nbPlacesTrajetOrigine', $trajet->nbPlacesTrajet) !!}
+											{!! Form::submit('Réserver ce trajet', ['class' => 'btn btn-success btn-block', 'onclick' => 'return confirm(\'Voulez-vous vraiment vous inscrire sur ce trajet ?\')']) !!}
+											{!! Form::close() !!}
+										</td>
 									</tr>
 								@endif
-							@else
+							@elseif($trajet->nbPlacesTrajet >0 && $trajet->idConducteurTrajet != Auth::user()->id)
 								@if($trajet->villeDepartTrajet == $villeDep[$depart] && $trajet->villeArriveeTrajet == $villeArr[$arrivee] && $trajet->dateDebutTrajet == $date)
+									{!! $nbRes++ !!}
 									<tr>
 										<td>{!! $trajet->id !!}</td>
 										<td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
 										<td class="text-primary"><strong>{!! $trajet->villeArriveeTrajet !!}</strong></td>
 										<td class="text-primary"><strong>{!! $trajet->dateDebutTrajet !!}</strong></td>
 										<td class="text-primary"><strong>{!! $trajet->heureDepartTrajet !!}</strong></td>
+										<td class="text-primary"><strong>{!! $trajet->nbPlacesTrajet !!}</strong></td>
 										<td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-										<td>{!! link_to_route('trajet.show', 'Sélectionner', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+										<td>
+											{!! Form::open(array('url' => '/confirmtrajet')) !!}
+											Nb de places
+											{!! Form::selectRange('nbPlacesTrajetReservation', 1, $trajet->nbPlacesTrajet, null, ['class' => 'form-control', 'placeholder' => 'Nombre de places disponibles']) !!}
+										</td>
+										<td>
+											{!! Form::hidden('trajet_id', $trajet->id) !!}
+											{!! Form::hidden('nbPlacesTrajetOrigine', $trajet->nbPlacesTrajet) !!}
+											{!! Form::submit('Réserver ce trajet', ['class' => 'btn btn-success btn-block', 'onclick' => 'return confirm(\'Voulez-vous vraiment vous inscrire sur ce trajet ?\')']) !!}
+											{!! Form::close() !!}
+										</td>
 									</tr>
 								@endif
 							@endif
 						@endforeach
 						</tbody>
 					</table>
+					@if($nbRes==0)
+						<p>Désolé, aucun trajet n'a été trouvé.</p>
+					@endif
 				@endif
             </div>
         </div>

@@ -22,4 +22,9 @@ class Trajet extends Model {
     {
         return $this->belongsTo('App\User');
     }
+	
+	public function passagers()
+	{
+		return $this->belongsToMany('App\User');
+	}
 }

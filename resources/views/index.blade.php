@@ -2,7 +2,7 @@
 
 @section('contenu')
     <br>
-    <div class="col-md-offset-2 col-sm-8">
+    <div class="col-md-offset-3 col-sm-6">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
@@ -19,6 +19,8 @@
 							<tr>
 								<th>#</th>
 								<th>Pseudo</th>
+								<th>Conducteur</th>
+								<th>Admin</th>
 								<th></th>
 								<th></th>
 								<th></th>
@@ -26,9 +28,17 @@
 						</thead>
 						<tbody>
 							@foreach ($users as $user)
+								<?php
+									$statutAdmin="Non";
+									$statutConducteur="Non";
+									if($user->vehicule!=null)	$statutConducteur="Oui";
+								    if($user->admin) $statutAdmin="Oui";
+								?>
 								<tr>
 									<td>{!! $user->id !!}</td>
 									<td class="text-primary"><strong>{!! $user->pseudoUsers !!}</strong></td>
+									<td class="text-primary"><strong>{!! $statutConducteur !!}</strong></td>
+									<td class="text-primary"><strong>{!! $statutAdmin !!}</strong></td>
 									<td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 									<td>{!! link_to_route('user.edit', 'Modifier', [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 									<td>

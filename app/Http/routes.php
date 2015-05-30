@@ -12,8 +12,11 @@
 */
 
 //route la gestion des utilisateurs
-Route::resource('user', 'UserController');
+
 Route::resource('vehicule', 'VehiculeController');
+
+Route::resource('user', 'UserController');
+
 
 Route::resource('/', 'HomeController');
 Route::resource('home', 'HomeController');
@@ -48,6 +51,11 @@ Route::get('findtrajet', function()
 Route::post('findtrajet', function()
 {
     return View::make('Trajet/findTrajet');
+});
+
+Route::post('confirmtrajet', function()
+{
+    return View::make('Trajet/confirmTrajet');
 });
 
 Route::resource('find', 'TrajetController@index');

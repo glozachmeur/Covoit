@@ -10,7 +10,12 @@
         <div class="panel-body">
             <div class="col-sm-12">
 				@if(isset(Auth::user()->vehicule->nomVehicule))
-					<?php $id = Auth::user()->id; ?>
+					<?php 
+					
+						$id = Auth::user()->id; 
+						$nbPlaces = Auth::user()->vehicule->nbPlacesVehicule - 1; 
+						
+					?>
 					{!! Form::open(['url' => 'trajet', 'method' => 'post', 'class' => 'form-horizontal']) !!}
 					<div class="form-group {!! $errors->has('villeDepartTrajet') ? 'has-error' : '' !!}">
 						Ville de départ* :
@@ -36,19 +41,20 @@
 					
 					<div class="form-group {!! $errors->has('nbPlacesTrajet') ? 'has-error' : '' !!}">
 						Nombre de places disponibles* :
-						{!! Form::selectRange('nbPlacesTrajet', 1, 5, null, ['class' => 'form-control', 'placeholder' => 'Nombre de places disponibles']) !!}
+						{!! Form::selectRange('nbPlacesTrajet', 1, $nbPlaces, null, ['class' => 'form-control', 'placeholder' => 'Nombre de places disponibles']) !!}
 						{!! $errors->first('nbPlacesTrajet', '<small class="help-block">:message</small>') !!}
 					</div>
 					<div class="form-group {!! $errors->has('pppTrajet') ? 'has-error' : '' !!}">
 						Prix par passagers (€)* :
 						{!! Form::selectRange('pppTrajet', 1, 99, null, ['class' => 'form-control']) !!}
 					</div>
+					{!! Form::hidden('fromUser', true) !!}
 					{!! Form::hidden('idConducteurTrajet', $id) !!}
 					{!! Form::submit('Créer trajet', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}
 				@else
-					<p class="col-md-2">Attention, vous ne pouvez pas proposer de trajets, vous n'avez pas encore renseigné votre véhicule.<br/>
-					pour le faire, veuillez aller dans l'espace "Mon véhicule".</p>
+					<p>Attention, vous ne pouvez pas proposer de trajets, vous n'avez pas encore renseigné votre véhicule. Cliquez
+					<a href="{{ url('/myvehicule') }}">ici</a> pour ajouter maintenant votre véhicule.</p> 
 				@endif
             </div>
         </div>

@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration {
 			$table->string('name',20);
 			$table->string('telFixeUsers', 13)->nullable();
 			$table->string('telPortUsers', 13);
-			$table->integer('vehiculeUsers')->unsigned()->nullable();
 			$table->date('dateNaissanceUsers');
 			$table->string('photoUsers', 100)->nullable();
 			$table->boolean('admin')->default(false);			

@@ -49,11 +49,13 @@
 					  	{!! $errors->first('prenomUsers', '<small class="help-block">:message</small>') !!}
 					</div>
 					
-					<div class="form-group {!! $errors->has('photoUsers') ? 'has-error' : '' !!}">
-						Photo de profil
-					  	{!! Form::file('photoUsers', null) !!}
-					  	{!! $errors->first('photoUsers', '<small class="help-block">:message</small>') !!}
+					<div class="form-group">
+						Photo de profil actuelle :
+						<img src="/public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
 					</div>
+					{!! $user->photoUsers !!}
+					
+					
 					<div class="form-group">
 						<div class="checkbox">
 							<label>
