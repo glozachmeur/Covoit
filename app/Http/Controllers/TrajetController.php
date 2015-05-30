@@ -103,4 +103,11 @@ class TrajetController extends Controller {
         $this->trajetRepository->destroy($id);
         return redirect()->back();
     }
+
+    public function mine($id)
+    {
+        $trajet = $this->trajetRepository->getById($id);
+
+        return view('trajet/mesTrajet');
+    }
 }

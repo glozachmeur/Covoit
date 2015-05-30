@@ -148,6 +148,7 @@ return [
 		'Collective\Html\HtmlServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
+        'Cmgmyr\Messenger\MessengerServiceProvider',
 
 	],
 

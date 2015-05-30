@@ -113,12 +113,4 @@ class UserController extends Controller {
 
 		return redirect()->back();
 	}
-	
-	private function setAdmin($request)
-	{
-		if(!$request->has('admin'))
-		{
-			$request->merge(['admin' => 0]);
-		}		
-	}
 }
