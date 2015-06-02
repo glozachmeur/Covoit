@@ -16,8 +16,8 @@ class MessagesController extends Controller
      */
     public function __construct()
     {
-        $user = User::find(1);
-        Auth::login($user);
+        //$user = User::find(1);
+        //Auth::login($user);
     }
     /**
      * Show all of the message threads to the user
@@ -28,12 +28,12 @@ class MessagesController extends Controller
     {
         $currentUserId = Auth::user()->id;
         // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->get();
+        //$threads = Thread::getAllLatest()->get();
         // All threads that user is participating in
-        // $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
+         $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
         // All threads that user is participating in, with new messages
         // $threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
-        return view('Messages/indexMessage', compact('threads', 'currentUserId'));
+        return view('Messages/indexMessages', compact('threads', 'currentUserId'));
     }
     /**
      * Shows a message thread
@@ -55,7 +55,7 @@ class MessagesController extends Controller
         $userId = Auth::user()->id;
         $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
         $thread->markAsRead($userId);
-        return view('messenger.show', compact('thread', 'users'));
+        return view('Messages/showMessages', compact('thread', 'users'));
     }
     /**
      * Creates a new message thread
@@ -65,7 +65,7 @@ class MessagesController extends Controller
     public function create()
     {
         $users = User::where('id', '!=', Auth::id())->get();
-        return view('messenger.create', compact('users'));
+        return view('Messages/createMessages', compact('users'));
     }
     /**
      * Stores a new message thread

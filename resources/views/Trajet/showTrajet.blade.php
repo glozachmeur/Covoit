@@ -15,7 +15,7 @@
 
             <li>Heure de départ : {{ $trajet->heureDepartTrajet }}</li>
 
-            <li>Prix par personne : {{ $trajet->pppTrajet }}</li>
+            <li>Prix par personne : {{ $trajet->pppTrajet }} €</li>
 			
 			<li>Nombres de places disponibles :{{ $trajet->nbPlacesTrajet }}</li>
 			
@@ -25,23 +25,28 @@
 					$users = $trajet->passagers;
 				?>
 				<table class="table">
-						<thead>
+					<thead>
+						<tr>
+							<th>Pseudo</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach ($users as $user)
 							<tr>
-								<th>Pseudo</th>
-								<th></th>
-								<th></th>
+								<td class="text-primary"><strong>{!! $user->pseudoUsers !!}</strong></td>
+								<td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>	
+								<td>
+									{!! Form::open(array('url' => '/messages/create')) !!}
+									{!! Form::hidden('dest_id', $user->id) !!}
+									{!! Form::submit('Envoyer un message', ['class' => 'btn btn-success btn-block']) !!}
+									{!! Form::close() !!}
+								</td>						
 							</tr>
-						</thead>
-						<tbody>
-							@foreach ($users as $user)
-								<tr>
-									<td class="text-primary"><strong>{!! $user->pseudoUsers !!}</strong></td>
-									<td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-									<td>{!! link_to_route('user.edit', 'Envoyer un message', [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
+						@endforeach
+					</tbody>
+				</table>
 			@endif
         </div>
     </div>

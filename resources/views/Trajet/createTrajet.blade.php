@@ -11,10 +11,8 @@
             <div class="col-sm-12">
 				@if(isset(Auth::user()->vehicule->nomVehicule))
 					<?php 
-					
 						$id = Auth::user()->id; 
 						$nbPlaces = Auth::user()->vehicule->nbPlacesVehicule - 1; 
-						
 					?>
 					{!! Form::open(['url' => 'trajet', 'method' => 'post', 'class' => 'form-horizontal']) !!}
 					<div class="form-group {!! $errors->has('villeDepartTrajet') ? 'has-error' : '' !!}">

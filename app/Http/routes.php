@@ -58,6 +58,17 @@ Route::post('confirmtrajet', function()
     return View::make('Trajet/confirmTrajet');
 });
 
+
+Route::post('statutTrajet', function()
+{
+    return View::make('Trajet/statutTrajet');
+});
+
+Route::post('messages/create', function()
+{
+    return View::make('Messages/createMessages');
+});
+
 Route::resource('find', 'TrajetController@index');
 
 Route::controllers([
@@ -68,13 +79,10 @@ Route::controllers([
 //route trajet
 Route::resource('trajet','TrajetController');
 
-Route::resource('messages', 'MessagesController');
-/*
-//route messagerie
 Route::group(['prefix' => 'messages'], function () {
     Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
     Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
     Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
     Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
     Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
-});*/
+});

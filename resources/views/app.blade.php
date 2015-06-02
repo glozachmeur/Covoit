@@ -54,6 +54,9 @@
 						<li><a href="{{ url('/auth/login') }}">Connexion</a></li>
 						<li><a href="{{ url('/auth/register') }}">Inscription</a></li>
 					@else
+						<?php  $count = Auth::user()->newMessagesCount(); ?>
+						<li><a href="{{ url('/messages') }}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messagerie <span class="badge">{{ $count }}</span></a>
+						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->pseudoUsers }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">

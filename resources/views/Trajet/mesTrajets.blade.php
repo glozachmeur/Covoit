@@ -5,7 +5,7 @@
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
-		<div class="panel panel-default">	
+		<div class="panel panel-primary">	
 			<div class="panel-heading">Espace mes trajets</div>
 				<div class="panel-body">
 					<?php $nbTrajets = Auth::user()->trajets->count(); ?>
@@ -17,7 +17,6 @@
 						<table class="table">
 						<thead>
 							<tr>
-								<th>#</th>
 								<th>Ville de départ</th>
 								<th>Ville d'arrivée</th>
 								<th>Date</th>
@@ -38,19 +37,30 @@
 								}
 							?>
 							<tr>
-								<td>{!! $trajet->id !!}</td>
 								<td class="text-primary"><strong>{!! $trajet->villeDepartTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajet->villeArriveeTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajet->dateDebutTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajet->heureDepartTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!!  $nbPlaces !!}</strong></td>
 								<td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-								<td>{!! HTML::decode(link_to_route('trajet.show', '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Effectué', [$trajet->id], ['class' => 'btn btn-warning btn-block'])) !!}</td>
-								<td>
-									{!! Form::open(['method' => 'DELETE', 'route' => ['trajet.destroy', $trajet->id]]) !!}
-									{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce trajet ?\')']) !!}
-									{!! Form::close() !!}
-								</td>							</tr>
+								@if(!$trajet->statutTrajet)
+									<td>
+										{!! Form::open(array('url' => '/statutTrajet') ) !!}
+										{!! Form::hidden('trajet_id', $trajet->id) !!}
+										{!! Form::button('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Effectué', ['class' => 'btn btn-warning btn-block', 'type'=>'submit)']) !!}
+										{!! Form::close() !!}
+									</td>
+									<td>
+										{!! Form::open(['method' => 'DELETE', 'route' => ['trajet.destroy', $trajet->id]]) !!}
+										{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce trajet ?\')']) !!}
+										{!! Form::close() !!}
+									</td>
+								@else
+									<td>
+										<strong>Trajet effectué</strong>
+									</td>
+								@endif
+							</tr>
 						@endforeach
 						</tbody>
 						</table>
@@ -68,7 +78,6 @@
 						<table class="table">
 						<thead>
 							<tr>
-								<th>#</th>
 								<th>Ville de départ</th>
 								<th>Ville d'arrivée</th>
 								<th>Date</th>
@@ -87,7 +96,6 @@
 								}
 							?>
 							<tr>
-								<td>{!! $trajetPassager->id !!}</td>
 								<td class="text-primary"><strong>{!! $trajetPassager->villeDepartTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajetPassager->villeArriveeTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajetPassager->dateDebutTrajet !!}</strong></td>
