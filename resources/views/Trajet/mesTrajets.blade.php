@@ -10,7 +10,7 @@
 				<div class="panel-body">
 					<?php $nbTrajets = Auth::user()->trajets->count(); ?>
 					
-					<h3>Conducteur :</h3>
+					<h3><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Conducteur</h3>
 					
 					@if($nbTrajets > 0)
 						<p><br/>Voici les trajets dans lesquels vous êtes conducteur.</p>
@@ -47,7 +47,7 @@
 									<td>
 										{!! Form::open(array('url' => '/statutTrajet') ) !!}
 										{!! Form::hidden('trajet_id', $trajet->id) !!}
-										{!! Form::button('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Effectué', ['class' => 'btn btn-warning btn-block', 'type'=>'submit)']) !!}
+										{!! Form::button('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Effectué', ['class' => 'btn btn-warning btn-block', 'onclick' => 'return confirm(\'Voulez vous vraiment valider ce trajet ?\nLes paiements seront ensuite validés.\')', 'type'=>'submit)']) !!}
 										{!! Form::close() !!}
 									</td>
 									<td>
@@ -70,7 +70,7 @@
 						</div>
 					@endif
 					
-					<h3>Passager :</h3><br/>
+					<h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Passager</h3><br/>
 					
 					<?php $nbTrajets = Auth::user()->trajetsPassager->count(); ?>
 					@if($nbTrajets > 0)
