@@ -25,7 +25,7 @@
 								<?php $class = $thread->isUnread($currentUserId) ? 'alert-info' : ''; ?>
 								<div class="media alert {!!$class!!}">
 								<p>{!! $thread->latestMessage->body !!}</p>
-								<p><small><strong>Destinataire:</strong> {!! $thread->participantsString(Auth::id()) !!}</small></p>
+								<p><small><strong>Pseudo du destinataire : </strong> {!! $thread->participantsString(Auth::id(), ['pseudoUsers']) !!}</small></p>
 								</div>
 							</div>
 						</div>

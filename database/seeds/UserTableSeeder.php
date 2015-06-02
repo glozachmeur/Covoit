@@ -10,7 +10,7 @@ class UserTableSeeder extends Seeder {
 			'name' => 'lozachmeur',
 			'prenomUsers' => 'guillaume',
 			'pseudoUsers' => 'hunteer',
-			'email' => 'guillaume.lozachmeur@utt.com',
+			'email' => 'guillaume.lozachmeur@utt.fr',
 			'password' => bcrypt('azerty'),
 			'telPortUsers' => '0631442604',
 			'dateNaissanceUsers' => '1994-07-17',

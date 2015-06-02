@@ -149,7 +149,7 @@ return [
 		'Way\Generators\GeneratorsServiceProvider',
 		'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
         'Cmgmyr\Messenger\MessengerServiceProvider',
-
+		'Jenssegers\Date\DateServiceProvider',
 	],
 
 	/*
