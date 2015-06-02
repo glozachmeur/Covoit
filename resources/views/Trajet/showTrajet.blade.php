@@ -6,7 +6,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">Fiche trajet</div>
         <div class="panel-body">
-            Voici les informations du trajet sélectionné :
+            <p>Voici les informations du trajet sélectionné :</p><br/>
             <li>Ville de départ : {{ $trajet->villeDepartTrajet }}</li>
 
             <li>Ville d'arrivée : {{ $trajet->villeArriveeTrajet }}</li>
@@ -18,6 +18,31 @@
             <li>Prix par personne : {{ $trajet->pppTrajet }}</li>
 			
 			<li>Nombres de places disponibles :{{ $trajet->nbPlacesTrajet }}</li>
+			
+			@if($trajet->idConducteurTrajet == Auth::user()->id || Auth::user()->admin)
+				<br/><p>Liste des passagers :</p><br/>
+				<?php
+					$users = $trajet->passagers;
+				?>
+				<table class="table">
+						<thead>
+							<tr>
+								<th>Pseudo</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($users as $user)
+								<tr>
+									<td class="text-primary"><strong>{!! $user->pseudoUsers !!}</strong></td>
+									<td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+									<td>{!! link_to_route('user.edit', 'Envoyer un message', [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+			@endif
         </div>
     </div>
     <a href="javascript:history.back()" class="btn btn-primary">

@@ -68,6 +68,8 @@ Route::controllers([
 //route trajet
 Route::resource('trajet','TrajetController');
 
+Route::resource('messages', 'MessagesController');
+/*
 //route messagerie
 Route::group(['prefix' => 'messages'], function () {
     Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
@@ -75,4 +77,4 @@ Route::group(['prefix' => 'messages'], function () {
     Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
     Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
     Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
-});
+});*/

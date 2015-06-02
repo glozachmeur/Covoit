@@ -18,7 +18,8 @@
 				
 				<div class="form-group {!! $errors->has('villeDepartTrajet') ? 'has-error' : '' !!}">
 						Ville de départ* :
-						{!! Form::select('villeDepartTrajet', $villeDep , ['class' => 'form-control']) !!}
+						{!! Form::select('villeDepartTrajet', $villeDep , ['class' => 'dropdownn-menu']) !!}
+						
 				</div>
 				
 				<div class="form-group {!! $errors->has('villeArriveeTrajet') ? 'has-error' : '' !!}">
@@ -110,7 +111,9 @@
 						</tbody>
 					</table>
 					@if($nbRes==0)
-						<p>Désolé, aucun trajet n'a été trouvé.</p>
+						<div class="alert alert-danger" role="alert">
+							<a href="#" class="alert-link">Désolé, aucun trajet n'a été trouvé.</a>
+						</div>
 					@endif
 				@endif
             </div>

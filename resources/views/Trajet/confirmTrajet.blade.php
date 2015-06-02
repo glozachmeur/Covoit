@@ -18,11 +18,12 @@
 						DB::table('trajet_user')->insert(
 							['user_id' => Auth::user()->id, 'trajet_id' => $trajet_id]
 						);
+						
 						DB::table('T_TRAJET')
 							->where('id', $trajet_id)
 							->update(['nbPlacesTrajet' => $nbPlacesOrigine-$nbPlaces]);
 					?>
-					<p>Votre réservation a été pris en compte ! Vous pouvez voir vos trajets<a href="{{ url('/mytrajet') }}"> ICI</a>.</p>
+					<p>Votre réservation a été pris en compte ! Vous pouvez voir vos trajets<a href="{{ url('/mytrajet') }}"> ici</a>.</p>
 				@else
 					<p>Il ya eu un soucis.</p>
 				@endif

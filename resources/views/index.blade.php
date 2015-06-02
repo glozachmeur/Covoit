@@ -52,7 +52,6 @@
 						</tbody>
 					</table>
 				</div>
-				{!! link_to_route('user.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']) !!}
 				{!! $links !!}
 		@else
 			<div class="panel panel-primary">

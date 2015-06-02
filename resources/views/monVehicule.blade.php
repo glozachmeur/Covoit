@@ -38,7 +38,7 @@
 							 
 							<div class="form-group {!! $errors->has('nbPlacesVehicules') ? 'has-error' : '' !!}">
 								Nombre de places disponibles :
-								{!! Form::selectRange('nbPlacesVehicule', 1, 5, null, ['class' => 'form-control', 'placeholder' => 'Nombre de places disponibles']) !!}
+								{!! Form::selectRange('nbPlacesVehicule', 2, 8, null, ['class' => 'form-control', 'placeholder' => 'Nombre de places disponibles']) !!}
 								{!! $errors->first('nbPlacesVehicule', '<small class="help-block">:message</small>') !!}
 							</div>
 							{!! Form::hidden('user_id', $id) !!}

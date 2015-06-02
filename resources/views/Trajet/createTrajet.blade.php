@@ -53,8 +53,11 @@
 					{!! Form::submit('Créer trajet', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}
 				@else
-					<p>Attention, vous ne pouvez pas proposer de trajets, vous n'avez pas encore renseigné votre véhicule. Cliquez
-					<a href="{{ url('/myvehicule') }}">ici</a> pour ajouter maintenant votre véhicule.</p> 
+					<div class="alert alert-danger" role="alert">
+							<strong>Attention, vous ne pouvez pas proposer de trajets, vous n'avez pas encore renseigné votre véhicule. Cliquez
+								<a href="{{ url('/myvehicule') }}">ici</a> pour ajouter maintenant votre véhicule.
+							</strong>
+					</div>
 				@endif
             </div>
         </div>
