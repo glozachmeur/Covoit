@@ -83,6 +83,7 @@
 								<th>Date</th>
 								<th>Heure de départ</th>
 								<th>Nombre de places</th>
+								<th>Statut</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -94,6 +95,12 @@
 								}else{
 									$nbPlaces = "Complet";
 								}
+								
+								if($trajetPassager->statutTrajet){
+									$statut = "Effectué";
+								}else{
+									$statut = "Non effectué";
+								}
 							?>
 							<tr>
 								<td class="text-primary"><strong>{!! $trajetPassager->villeDepartTrajet !!}</strong></td>
@@ -101,6 +108,7 @@
 								<td class="text-primary"><strong>{!! $trajetPassager->dateDebutTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajetPassager->heureDepartTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $nbPlaces !!}</strong></td>
+								<td class="text-primary"><strong>{!! $statut !!}</strong></td>
 								<td>{!! link_to_route('trajet.show', 'Voir', [$trajetPassager->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 							</tr>
 						@endforeach

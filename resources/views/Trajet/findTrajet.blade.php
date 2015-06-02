@@ -60,7 +60,7 @@
 						<tbody>
 						@foreach ($trajets as $trajet)
 							@if($date==null && $trajet->nbPlacesTrajet >0 && $trajet->idConducteurTrajet != Auth::user()->id)
-								@if($trajet->villeDepartTrajet == $villeDep[$depart] && $trajet->villeArriveeTrajet == $villeArr[$arrivee])
+								@if($trajet->villeDepartTrajet == $villeDep[$depart] && $trajet->villeArriveeTrajet == $villeArr[$arrivee] && !$trajet->statutTrajet)
 									<?php $nbRes++; ?>
 									<tr>
 										<td>{!! $trajet->id !!}</td>
@@ -83,7 +83,7 @@
 									</tr>
 								@endif
 							@elseif($trajet->nbPlacesTrajet >0 && $trajet->idConducteurTrajet != Auth::user()->id)
-								@if($trajet->villeDepartTrajet == $villeDep[$depart] && $trajet->villeArriveeTrajet == $villeArr[$arrivee] && $trajet->dateDebutTrajet == $date)
+								@if($trajet->villeDepartTrajet == $villeDep[$depart] && $trajet->villeArriveeTrajet == $villeArr[$arrivee] && $trajet->dateDebutTrajet == $date && !$trajet->statutTrajet)
 									{!! $nbRes++ !!}
 									<tr>
 										<td>{!! $trajet->id !!}</td>
