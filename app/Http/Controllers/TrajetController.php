@@ -15,6 +15,8 @@ class TrajetController extends Controller {
     public function __construct(TrajetRepository $trajetRepository)
     {
         $this->trajetRepository = $trajetRepository;
+		$this->middleware('auth', ['except' => 'index']);
+
     }
 
     /**

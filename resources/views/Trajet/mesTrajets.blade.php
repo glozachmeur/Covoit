@@ -70,11 +70,11 @@
 						</div>
 					@endif
 					
-					<h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Passager</h3><br/>
+					<br/><h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Passager</h3>
 					
 					<?php $nbTrajets = Auth::user()->trajetsPassager->count(); ?>
 					@if($nbTrajets > 0)
-						<p><br/>Voici les trajets dans lesquels vous êtes passager.</p>
+						<p>Voici les trajets dans lesquels vous êtes passager.</p>
 						<table class="table">
 						<thead>
 							<tr>

@@ -54,11 +54,11 @@
 							$dateMiseEnService = Auth::user()->vehicule->dateMiseEnService; 						
 						?>
 						<p>Comme vous avez renseigné un véhicule, vous pouvez proposer des trajets.<br/>Voici les informations correspondant à votre véhicule :</p>
-						<li>Nom du véhicule : {!! $nom !!}</li>	
-						<li>Marque du véhicule : {!! $marque !!}</li>								
-						<li>Couleur du véhicule : {!! $couleur!!}</li>					
-						<li>Nombres de places disponibles : {!! $nbPlaces !!}</li>					
-						<li>Date de mise en service du véhicule: {!! $dateMiseEnService !!}</li>					
+						<li>Nom du véhicule : <strong> {!! $nom !!}</strong> </li>	
+						<li>Marque du véhicule : <strong> {!! $marque !!}</strong> </li>								
+						<li>Couleur du véhicule : <strong> {!! $couleur!!}</strong> </li>					
+						<li>Nombres de places disponibles : <strong> {!! $nbPlaces !!}</strong> </li>					
+						<li>Date de mise en service du véhicule: <strong> {!! $dateMiseEnService !!}</strong> </li>					
 					@endif
 				</div>
 			</div>
