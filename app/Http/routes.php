@@ -77,7 +77,7 @@ Route::controllers([
 ]);
 
 //route trajet
-Route::resource('trajet','TrajetController');
+Route::resource('trajet','TrajetController', ['middleware' => 'admin']);
 
 Route::group(['prefix' => 'messages'], function () {
     Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);

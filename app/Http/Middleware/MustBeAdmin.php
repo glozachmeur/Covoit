@@ -16,7 +16,6 @@ class MustBeAdmin {
 
         //if user is logged in AND
         //user is admin
-        var_dump('coucou');
         if($request->user() && $request->user()->isAdmin())
         {
             return $next($request);
