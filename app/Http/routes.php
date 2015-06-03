@@ -13,8 +13,8 @@
 
 //route la gestion des utilisateurs
 
-Route::resource('vehicule', 'VehiculeController');
-
+Route::resource('vehicule', 'VehiculeController', ['middleware' => 'admin']);
+/**/
 Route::resource('user', 'UserController');
 
 

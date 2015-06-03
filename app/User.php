@@ -53,4 +53,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
 		return $this->belongsToMany('App\Trajet');
     }
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
 }
