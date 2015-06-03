@@ -51,14 +51,6 @@ Date::setLocale('fr');
 				{!! Form::textarea('message', null, ['class' => 'form-control']) !!}
 			</div>
 	
-			@if($users->count() > 0)
-				<div class="checkbox">
-					@foreach($users as $user)
-						<label title="{!! $user->name !!}"><input type="checkbox" name="recipients[]" value="{!! $user->id !!}">{!! $user->name !!}</label>
-					@endforeach
-				</div>
-			@endif
-	
 						<!-- Submit Form Input -->
 				<div class='col-md-offset-9 col-md-3'>
 					<div class="form-group">

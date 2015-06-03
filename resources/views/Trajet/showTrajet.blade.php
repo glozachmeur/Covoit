@@ -7,17 +7,17 @@
         <div class="panel-heading">Fiche trajet</div>
         <div class="panel-body">
             <p>Voici les informations du trajet sélectionné :</p><br/>
-            <li>Ville de départ : {{ $trajet->villeDepartTrajet }}</li>
+            <li>Ville de départ : <strong>{{ $trajet->villeDepartTrajet }}</strong></li>
 
-            <li>Ville d'arrivée : {{ $trajet->villeArriveeTrajet }}</li>
+            <li>Ville d'arrivée : <strong>{{ $trajet->villeArriveeTrajet }}</strong></li>
 			
-            <li>Date du trajet : {{ $trajet->dateDebutTrajet }}</li>
+            <li>Date du trajet : <strong>{{ $trajet->dateDebutTrajet }}</strong></li>
 
-            <li>Heure de départ : {{ $trajet->heureDepartTrajet }}</li>
+            <li>Heure de départ : <strong>{{ $trajet->heureDepartTrajet }}</strong></li>
 
-            <li>Prix par personne : {{ $trajet->pppTrajet }} €</li>
+            <li>Prix par personne : <strong>{{ $trajet->pppTrajet }} €</strong></li>
 			
-			<li>Nombres de places disponibles :{{ $trajet->nbPlacesTrajet }}</li>
+			<li>Nombres de places disponibles :<strong>{{ $trajet->nbPlacesTrajet }}</strong></li>
 			
 			@if($trajet->idConducteurTrajet == Auth::user()->id || Auth::user()->admin)
 				<br/><p>Liste des passagers :</p><br/>

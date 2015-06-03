@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
-	<div class="col-md-offset-2 col-md-8">
+	<div class="col-md-offset-3 col-md-6">
 		<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">Créer un nouveau message</h3>
@@ -27,7 +27,7 @@
 			
 							?>
 							<div class="form-group">
-								Destinataire : {{$dest->pseudoUsers}}
+								Destinataire : <strong>{{$dest->pseudoUsers}}</strong>
 							</div>
 							<input type="hidden" name="recipients[]" value="{!!$dest->id!!}">
 						@else
@@ -45,10 +45,16 @@
 							<br/><br/>
 						@endif
 									<!-- Submit Form Input -->
-							<div class="form-group">
-								{!! Form::submit('Envoyer', ['class' => 'btn btn-primary form-control']) !!}
+							<div class="col-md-offset-9 col-md-3">
+								<div class="form-group">
+									{!! Form::submit('Envoyer', ['class' => 'btn btn-primary form-control']) !!}
+								</div>
 							</div>
 					{!! Form::close() !!}
 		</div>
 	</div>
+	
+	<a href="javascript:history.back()" class="btn btn-primary">
+			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+	</a>
 @stop

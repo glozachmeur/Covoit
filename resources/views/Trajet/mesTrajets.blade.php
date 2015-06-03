@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('contenu')
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
@@ -74,7 +74,7 @@
 					
 					<?php $nbTrajets = Auth::user()->trajetsPassager->count(); ?>
 					@if($nbTrajets > 0)
-						<p>Voici les trajets dans lesquels vous êtes passager.</p>
+						<br/><p>Voici les trajets dans lesquels vous êtes passager.</p>
 						<table class="table">
 						<thead>
 							<tr>

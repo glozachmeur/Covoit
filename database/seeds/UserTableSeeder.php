@@ -27,5 +27,28 @@ class UserTableSeeder extends Seeder {
 			'dateNaissanceUsers' => '1994-07-17',
 			'admin' => 0
 		]);
+		
+		
+		DB::table('users')->insert([
+			'name' => 'Jean',
+			'prenomUsers' => 'Marc',
+			'pseudoUsers' => 'Chauffard',
+			'email' => 'example565@gmail.com',
+			'password' => bcrypt('azerty'),
+			'telPortUsers' => '0600502030',
+			'dateNaissanceUsers' => '1990-01-17',
+			'admin' => 0
+		]);
+		
+		DB::table('users')->insert([
+			'name' => 'Kevin',
+			'prenomUsers' => 'Deailt',
+			'pseudoUsers' => 'Brav',
+			'email' => 'example45@gmail.com',
+			'password' => bcrypt('azerty'),
+			'telPortUsers' => '0600102030',
+			'dateNaissanceUsers' => '1994-07-17',
+			'admin' => 0
+		]);
 	}
 }

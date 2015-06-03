@@ -34,7 +34,7 @@ class CreateTPassagerTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('pasager', function(Blueprint $table) {
+		Schema::table('t_passager', function(Blueprint $table) {
 			$table->dropForeign('t_passager_user_id_foreign');
 			$table->dropForeign('t_passager_trajet_id_foreign');
 		});

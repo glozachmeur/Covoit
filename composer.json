@@ -15,8 +15,7 @@
 		"xethron/migrations-generator": "dev-l5",
 		"way/generators": "dev-feature/laravel-five-stable",
         "kyslik/view-clear": "~1.0.0",
-        "cmgmyr/messenger": "~2.0",
-		"laravelrus/localized-carbon": "1.*"	
+        "cmgmyr/messenger": "~2.0"
 	},
 	"repositories": [
 		{
