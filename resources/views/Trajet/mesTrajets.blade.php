@@ -10,9 +10,30 @@
 				<div class="panel-body">
 					@if(Input::get('trajet_id')!==null)
 						<?php
-							DB::table('T_TRAJET')
-								->where('id', Input::get('trajet_id'))
-								->update(['statutTrajet' => 1]);
+							$trajet = App\Trajet::find(Input::get('trajet_id'));
+							if(!$trajet->statutTrajet){
+								DB::table('T_TRAJET')
+									->where('id', Input::get('trajet_id'))
+									->update(['statutTrajet' => 1]);
+								
+								
+								$nbPassager = $trajet->passagers->count();
+								
+								if($nbPassager>0){
+									foreach($trajet->passagers as $passager){
+										$solde_prec=$passager->soldeUsers;
+										DB::table('users')
+										->where('id', $passager->id)
+										->update(['soldeUsers' => $solde_prec-$trajet->pppTrajet]);
+									}
+									
+									$solde_prec=Auth::user()->soldeUsers;
+									$montant=$trajet->pppTrajet*$nbPassager;
+									DB::table('users')
+										->where('id', Auth::user()->id)
+										->update(['soldeUsers' => $solde_prec+$montant]);
+								}
+							}
 						?>
 						<div class="alert alert-success" role="alert">
 							<strong><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Le statut du trajet a bien été placé a effectué, les paiements sont validés.</strong>
@@ -82,14 +103,14 @@
 								<td>{!! link_to_route('trajet.show', 'Voir', [$trajet->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 								@if(!$trajet->statutTrajet)
 									<td>
-										{!! Form::open(array('method' => 'get') ) !!}
+										{!! Form::open(array('method' => 'post') ) !!}
 										{!! Form::hidden('trajet_id', $trajet->id) !!}
 										{!! Form::button('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Effectué', ['class' => 'btn btn-warning btn-block', 'onclick' => 'return confirm(\'Voulez vous vraiment valider ce trajet ?\nLes paiements seront ensuite validés.\')', 'type'=>'submit)']) !!}
 										{!! Form::close() !!}
 									</td>
 									<td>
 										{!! Form::open(['method' => 'DELETE', 'route' => ['trajet.destroy', $trajet->id]]) !!}
-										{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce trajet ?\')']) !!}
+										{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce trajet ? Vous paierez 10€ de pénalité par passager.\')']) !!}
 										{!! Form::close() !!}
 									</td>
 								@else
