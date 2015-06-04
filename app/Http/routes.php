@@ -13,8 +13,8 @@
 
 //route la gestion des utilisateurs
 
-Route::resource('vehicule', 'VehiculeController');
-
+Route::resource('vehicule', 'VehiculeController', ['middleware' => 'admin']);
+/**/
 Route::resource('user', 'UserController');
 
 
@@ -92,7 +92,7 @@ Route::controllers([
 ]);
 
 //route trajet
-Route::resource('trajet','TrajetController');
+Route::resource('trajet','TrajetController', ['middleware' => 'admin']);
 
 Route::post('/trajet/{n}','TrajetController@show');
 

@@ -57,5 +57,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function notes()
     {
 		return $this->hasMany('App\Appreciation_user');
-    }
+
+	}
+	
+    public function isAdmin()
+    {
+        return $this->admin;
+	}
 }
