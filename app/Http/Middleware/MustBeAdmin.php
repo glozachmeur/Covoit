@@ -16,11 +16,18 @@ class MustBeAdmin {
 
         //if user is logged in AND
         //user is admin
-        if($request->user() && $request->user()->isAdmin())
+
+        $user = $request->user();
+
+        if ($user && $user->isAdmin())
         {
-            return $next($request);
-        } else redirect('/');
+                return $next($request);
+        }
+        else redirect('/');
+
 
 	}
 
 }
+/*if ($this->auth->guest()) {
+if ($request->user() && $request->user()->isAdmin())*/

@@ -13,10 +13,14 @@
 
 //route la gestion des utilisateurs
 
-Route::resource('vehicule', 'VehiculeController', ['middleware' => 'admin']);
-/**/
-Route::resource('user', 'UserController');
 
+//Route::resource('vehicule', 'VehiculeController', ['middleware' => 'admin']);
+Route::resource('user', 'UserController', ['middleware' => 'admin']);
+
+Route::get('vehicule',[
+    'uses'=>'VehiculeController',
+    'middleware' =>'admin'
+]);
 
 Route::resource('/', 'HomeController');
 Route::resource('home', 'HomeController');

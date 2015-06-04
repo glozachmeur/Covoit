@@ -55,6 +55,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     public function isAdmin()
     {
-        return $this->admin;
+        return $this->users->admin == '1' ;
     }
 }
