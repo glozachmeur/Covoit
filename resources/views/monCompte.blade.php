@@ -17,9 +17,7 @@
 							<p>Email : <strong>{{ $user->email }}</strong></p>
 							<p>Pseudo : <strong>{{ $user->pseudoUsers }}</strong></p>
 							<p>Date de naissance : <strong>{{ $user->dateNaissanceUsers }}</strong><p>
-							@if($user->soldeUsers!=null)
-								<p>Solde : <strong>{{ $user->soldeUsers }}€</strong><p>
-							@endif
+							<p>Solde : <strong>{{ $user->soldeUsers }}€</strong><p>
 							@if($user->notes->count()!=0)
 								<?php
 									$note_moyenne=0;

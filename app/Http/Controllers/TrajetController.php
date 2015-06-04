@@ -121,6 +121,13 @@ class TrajetController extends Controller {
 				->update(['soldeUsers' => $solde_prec+$montant]);
 		}
 		
+		foreach($trajet->passagers as $passager){
+			$solde_prec=$passager->soldeUsers;
+			DB::table('users')
+				->where('id', $passager->id)
+				->update(['soldeUsers' => $solde_prec+10]);
+		}
+		
 		$this->trajetRepository->destroy($id);
         return redirect()->back();
     }
