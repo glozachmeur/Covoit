@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('contenu')
-    <div class="col-md-offset-2 col-md-8">
+    <div class="col-md-offset-3 col-md-6">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
@@ -12,11 +12,53 @@
 					<?php $user=Auth::user(); ?>
 					{!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put',  'files'=>true, 'class' => 'form-horizontal panel']) !!}
 						<div class="form-group">
-							<p>Nom : {{ $user->name }}
-							<p>Prénom : {{ $user->prenomUsers }}</p>
-							<p>Email : {{ $user->email }}</p>
-							<p>Pseudo : {{ $user->pseudoUsers }}</p>
-							<p>Date de naissance : {{ $user->dateNaissanceUsers }}<p>
+							<p>Nom : <strong>{{ $user->name }}</strong></p>
+							<p>Prénom : <strong>{{ $user->prenomUsers }}</strong></p>
+							<p>Email : <strong>{{ $user->email }}</strong></p>
+							<p>Pseudo : <strong>{{ $user->pseudoUsers }}</strong></p>
+							<p>Date de naissance : <strong>{{ $user->dateNaissanceUsers }}</strong><p>
+							<p>Solde : <strong>{{ $user->soldeUsers }}€</strong><p>
+							@if($user->notes->count()!=0)
+								<?php
+									$note_moyenne=0;
+									$i=0;
+									foreach($user->notes as $appreciation){
+										$i++;
+										$note=$appreciation->valeurAppreciation;
+										$note_moyenne+=$note;
+									}
+									$note_moyenne=$note_moyenne/$i;
+								?>
+								<p>Note moyenne de passager : <strong>{{ $note_moyenne }}/10</strong><p>
+							@endif
+							
+							@if($user->trajets->count()!=0)
+								<?php
+									$aEteNote= false;
+									foreach($user->trajets as $trajet){
+										if($trajet->note->count()!=0){
+											$aEteNote=true;
+										}
+									}
+								?>
+								@if($aEteNote)
+									<?php
+									
+										$note_moyenne=0;
+										$i=0;
+										foreach($user->trajets as $trajet){
+											foreach($trajet->note as $appreciation){
+												$i++;
+												$note=$appreciation->valeurAppreciation;
+												$note_moyenne+=$note;
+											}
+										}
+										$note_moyenne=$note_moyenne/$i;
+									?>
+								
+									<p>Note moyenne de conducteur : <strong>{{ $note_moyenne }}/10</strong><p>
+								@endif
+							@endif
 						</div>
 						<div class="form-group {!! $errors->has('telPortUsers') ? 'has-error' : '' !!}">
 							Téléphone portable*
@@ -29,7 +71,7 @@
 							{!! $errors->first('telFixeUsers', '<small class="help-block">:message</small>') !!}
 						</div>
 						<div class="form-group">
-							Photo de profil actuelle :
+							Photo de profil actuelle :<br/>
 							<img src="../../public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
 						</div>
 						<div class="form-group {!! $errors->has('photo') ? 'has-error' : '' !!}">

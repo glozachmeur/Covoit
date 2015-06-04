@@ -42,6 +42,11 @@ Route::get('mytrajet', function()
     return View::make('Trajet/mesTrajets');
 });
 
+Route::post('mytrajet', function()
+{
+    return View::make('Trajet/mesTrajets');
+});
+
 Route::get('selecttrajet', function()
 {
     return View::make('Trajet/selectTrajet');
@@ -55,6 +60,16 @@ Route::get('findtrajet', function()
 Route::post('findtrajet', function()
 {
     return View::make('Trajet/findTrajet');
+});
+
+Route::post('confirmnotetrajet', function()
+{
+    return View::make('Trajet/confirmNoteTrajet');
+});
+
+Route::post('confirmnoteuser', function()
+{
+    return View::make('Trajet/confirmNoteUser');
 });
 
 Route::post('confirmtrajet', function()
@@ -82,6 +97,8 @@ Route::controllers([
 
 //route trajet
 Route::resource('trajet','TrajetController', ['middleware' => 'admin']);
+
+Route::post('/trajet/{n}','TrajetController@show');
 
 Route::group(['prefix' => 'messages'], function () {
     Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);

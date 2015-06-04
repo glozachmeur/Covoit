@@ -6,6 +6,9 @@ use Input;
 use App\Repositories\TrajetRepository;
 use App\Repositories\VehiculeRepository;
 use App\Repositories\UserRepository;
+use App\Trajet;
+use Auth;
+use DB;
 
 use Illuminate\Http\Request;
 class TrajetController extends Controller {
@@ -105,7 +108,27 @@ class TrajetController extends Controller {
      */
     public function destroy($id)
     {
-        $this->trajetRepository->destroy($id);
+		$trajet = Trajet::find($id);
+		
+		$solde_prec=Auth::user()->soldeUsers;
+		
+		$nbPassager = $trajet->passagers->count();
+		
+		if($nbPassager>0){
+			$montant=-10*$nbPassager;
+			DB::table('users')
+				->where('id', Auth::user()->id)
+				->update(['soldeUsers' => $solde_prec+$montant]);
+		}
+		
+		foreach($trajet->passagers as $passager){
+			$solde_prec=$passager->soldeUsers;
+			DB::table('users')
+				->where('id', $passager->id)
+				->update(['soldeUsers' => $solde_prec+10]);
+		}
+		
+		$this->trajetRepository->destroy($id);
         return redirect()->back();
     }
 
