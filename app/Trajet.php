@@ -27,4 +27,8 @@ class Trajet extends Model {
 	{
 		return $this->belongsToMany('App\User');
 	}
+	
+	public function note(){
+		return $this->hasMany('App\Appreciation_trajet');
+	}
 }
