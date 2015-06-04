@@ -8,7 +8,6 @@
 				</div>
 				
 				<div class="panel-body">
-		
 					{!! Form::open(['route' => 'messages.store']) !!}
 						<div class="form-group">
 							{!! Form::label('subject', 'Sujet', ['class' => 'control-label']) !!}
