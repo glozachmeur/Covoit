@@ -5,7 +5,6 @@ use App\Http\Requests\VehiculeUpdateRequest;
 
 use App\Repositories\VehiculeRepository;
 use App\Repositories\UserRepository;
-
 use Illuminate\Http\Request;
 class VehiculeController extends Controller {
 	 protected $vehiculeRepository;
