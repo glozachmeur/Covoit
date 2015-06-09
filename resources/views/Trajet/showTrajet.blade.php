@@ -6,6 +6,9 @@
     <div class="panel panel-primary">
         <div class="panel-heading">Fiche trajet</div>
         <div class="panel-body">
+			<?php
+				$tab_notes=array("A éviter","Décevant", "Bien", "Excellent", "Extraordinaire");
+			?>
 			@if(Input::get('note')!=null && Input::get('user_id') != null && Input::get('trajet_id')!=null)
 						<?php
 							$trajet_id=Input::get('trajet_id');
@@ -21,6 +24,7 @@
 									$ever_rated=true;
 								}
 							}
+							
 						?>
 							@if(!$ever_rated)
 								<?php
@@ -87,8 +91,9 @@
 										@if(!$aNote && $trajet->idConducteurTrajet == Auth::user()->id)
 											<td>
 												{!! Form::open(array('method' => 'post')) !!}
-												{!! Form::selectRange('note', 0, 10, null, ['class' => 'form-control']) !!}
-											</td><td><h4>/10</h4></td>
+												{!! Form::select('note', $tab_notes, null, ['class' => 'form-control']) !!}
+											</td>
+											
 											<td>
 												{!! Form::hidden('user_id', $user->id) !!}
 												{!! Form::hidden('trajet_id', $trajet->id) !!}
@@ -97,7 +102,7 @@
 											</td>
 										@elseif($trajet->idConducteurTrajet == Auth::user()->id)
 											<td>
-												<strong><h6><i>Vous l'avez noté {{ $note }}/10</i></h6></strong>
+												<strong><h6><i>Vous avez noté ce passager comme étant "{{ $tab_notes[$note] }}".</i></h6></strong>
 											</td>
 										@endif
 									@endif					

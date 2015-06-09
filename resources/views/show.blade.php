@@ -12,6 +12,13 @@
 				<li>Pseudo : {{ $user->pseudoUsers }}</li>
 				<li>Email : {{ $user->email }}</li>
 				<li>Date de naissance : {{ $user->dateNaissanceUsers }}</li>
+				
+				<?php
+				
+					$tab_notes=array("A éviter","Décevant", "Bien", "Excellent", "Extraordinaire");
+				
+				?>
+				
 				@if($user->notes->count()!=0)
 								<?php
 									$note_moyenne=0;
@@ -23,7 +30,9 @@
 									}
 									$note_moyenne=$note_moyenne/$i;
 								?>
-								<li>Note moyenne de passager : <strong>{{ $note_moyenne }}/10</strong></li>
+								<li>Note moyenne de passager : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong></li>
+							@else
+								<p>Note moyenne de passager : Cet utilisateur n'a pas encore été noté!<p>
 							@endif
 							
 							@if($user->trajets->count()!=0)
@@ -50,7 +59,9 @@
 										$note_moyenne=$note_moyenne/$i;
 									?>
 								
-									<li>Note moyenne de conducteur : <strong>{{ $note_moyenne }}/10</strong></li>
+									<li>Note moyenne de conducteur : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong></li>
+								@else
+									<p>Note moyenne de conducteur : Cet utilisateur n'a pas encore été noté !<p>
 								@endif
 							@endif
 				<?php if($user->telPortUsers !=''){ ?>

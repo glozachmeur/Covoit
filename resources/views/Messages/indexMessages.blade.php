@@ -18,7 +18,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">
-									<h4 class="media-heading">{!! link_to('messages/' . $thread->id, $thread->subject) !!}</h4>
+									<h4 class="media-heading">Sujet : {!! link_to('messages/' . $thread->id, $thread->subject) !!}</h4>
 								</h3>
 							</div>
 							<div class="panel-body">

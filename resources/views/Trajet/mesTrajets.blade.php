@@ -179,13 +179,16 @@
 												$note_trajet=$appreciation->valeurAppreciation;
 											}
 										}
+										
+										$tab_notes=array("A éviter","Décevant", "Bien", "Excellent", "Extraordinaire");
 									
 									?>
 									@if($aNote==false)
 										<td>
 													{!! Form::open(array('method' => 'post')) !!}
-													{!! Form::selectRange('note', 0, 10, null, ['class' => 'form-control']) !!}
-										</td><td><h4>/10</h4></td>
+													{!! Form::select('note', $tab_notes, null, ['class' => 'form-control']) !!}
+										</td>
+										
 										<td>
 													{!! Form::hidden('trajet_id_appreciation', $trajetPassager->id) !!}
 													{!! Form::submit('Noter', ['class' => 'btn btn-warning btn-block']) !!}
@@ -193,7 +196,7 @@
 										</td>
 									@else
 										<td>
-												<strong><h6><i>Vous l'avez noté {{ $note_trajet }}/10</i></h6></strong>
+												<strong><h6><i>Vous avez ce trajet comme étant "{{ $tab_notes[$note_trajet] }}".</i></h6></strong>
 										</td>
 									@endif
 								@endif

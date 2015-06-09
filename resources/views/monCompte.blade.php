@@ -9,7 +9,10 @@
 			<div class="panel-heading">Espace mon compte</div>
 			<div class="panel-body"> 
 				<div class="col-sm-12">
-					<?php $user=Auth::user(); ?>
+					<?php 
+						$user=Auth::user();
+						$tab_notes=array("A éviter","Décevant", "Bien", "Excellent", "Extraordinaire");
+					?>
 					{!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'put',  'files'=>true, 'class' => 'form-horizontal panel']) !!}
 						<div class="form-group">
 							<p>Nom : <strong>{{ $user->name }}</strong></p>
@@ -29,7 +32,9 @@
 									}
 									$note_moyenne=$note_moyenne/$i;
 								?>
-								<p>Note moyenne de passager : <strong>{{ $note_moyenne }}/10</strong><p>
+								<p>Note moyenne de passager : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong><p>
+							@else
+								<p>Note moyenne de passager : Vous n'avez pas encore été noté !<p>
 							@endif
 							
 							@if($user->trajets->count()!=0)
@@ -55,8 +60,9 @@
 										}
 										$note_moyenne=$note_moyenne/$i;
 									?>
-								
-									<p>Note moyenne de conducteur : <strong>{{ $note_moyenne }}/10</strong><p>
+									<p>Note moyenne de conducteur : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong><p>
+								@else
+									<p>Note moyenne de passager : Vous n'avez pas encore été noté !<p>
 								@endif
 							@endif
 						</div>
