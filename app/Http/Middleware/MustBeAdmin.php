@@ -1,6 +1,9 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\RedirectResponse;
+
 
 class MustBeAdmin {
 
@@ -11,23 +14,19 @@ class MustBeAdmin {
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next)
-	{
 
-        //if user is logged in AND
-        //user is admin
-
-        $user = $request->user();
-
-        if ($user && $user->isAdmin())
+    public function handle($request, Closure $next)
+    {
+        if ($request->user() != null)
         {
+            if ($request->user()->admin == '1' )
+            {
                 return $next($request);
+            }
         }
-        else redirect('/');
 
+        return "Erreur: cette page est réservée aux administrateurs !";
+    }
 
-	}
 
 }
-/*if ($this->auth->guest()) {
-if ($request->user() && $request->user()->isAdmin())*/

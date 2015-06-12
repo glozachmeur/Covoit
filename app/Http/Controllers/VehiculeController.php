@@ -64,7 +64,7 @@ class VehiculeController extends Controller {
 		
 		$vehicule = $this->vehiculeRepository->getById($id);
 
-		return view('Vehicule/showVehicule',  compact('vehicule'));
+		return view('Vehicule/showVehicule',  compact('monvehicule'));
 	}
 
 	/**

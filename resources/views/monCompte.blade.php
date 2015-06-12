@@ -78,7 +78,7 @@
 						</div>
 						<div class="form-group">
 							Photo de profil actuelle :<br/>
-							<img src="../../public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
+							<img src="../public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
 						</div>
 						<div class="form-group {!! $errors->has('photo') ? 'has-error' : '' !!}">
 						Changer de photo de profil

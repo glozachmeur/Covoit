@@ -60,13 +60,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	}
 	
-    public function isAdmin()
+
+    /*public function isAdmin($request)
     {
-<<<<<<< HEAD
-        return $this->users->admin == '1' ;
-    }
-=======
-        return $this->admin;
+        if
+        //return $this->users.admin == '1'
+        //return $this->admin
 	}
->>>>>>> origin/master
+*/
 }
