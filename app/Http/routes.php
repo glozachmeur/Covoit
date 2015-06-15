@@ -21,6 +21,7 @@ Route::get('vehicule',[
     'uses'=>'VehiculeController',
     'middleware' =>'admin'
 ]);
+Route::resource('vehicule', 'VehiculeController');
 
 Route::resource('/', 'HomeController');
 Route::resource('home', 'HomeController');

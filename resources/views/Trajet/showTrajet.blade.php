@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('contenu')
-<div class="col-sm-offset-3 col-sm-6">
+<div class="col-sm-offset-2 col-sm-8">
     <br>
     <div class="panel panel-primary">
         <div class="panel-heading">Fiche trajet</div>
@@ -9,8 +9,10 @@
 			<?php
 				$tab_notes=array("A éviter","Décevant", "Bien", "Excellent", "Extraordinaire");
 			?>
+			
 			@if(Input::get('note')!=null && Input::get('user_id') != null && Input::get('trajet_id')!=null)
 						<?php
+						//Ici on gère le retour du formulaire lors de la création d'appréciation
 							$trajet_id=Input::get('trajet_id');
 							$note = Input::get('note');
 							$user = Input::get('user_id');
@@ -37,6 +39,8 @@
 							<strong>Votre note a bien été enregistrée.</strong>
 						</div>
 			@endif
+			
+			
             <p>Voici les informations du trajet sélectionné :</p><br/>
             <li>Ville de départ : <strong>{{ $trajet->villeDepartTrajet }}</strong></li>
 
@@ -49,6 +53,7 @@
             <li>Prix par personne : <strong>{{ $trajet->pppTrajet }} €</strong></li>
 			
 			<li>Nombres de places disponibles :<strong>{{ $trajet->nbPlacesTrajet }}</strong></li>			
+			
 				<br/><p>Liste des passagers :</p>
 				<?php
 					$users = $trajet->passagers;
@@ -57,6 +62,7 @@
 					<thead>
 						<tr>
 							<th>Pseudo</th>
+							<th>Nb de places réservées</th>
 							<th></th>
 							<th></th>
 						</tr>
@@ -64,8 +70,15 @@
 					<tbody>
 						@foreach ($users as $user)
 							@if($user->pseudoUsers != Auth::user()->pseudoUsers)
+							
+							<?php
+								//permet de récupérer le nombre de places qu'a réservé l'utilisateur
+								$result = DB::select('select nbplaces from trajet_user where user_id =:userid AND trajet_id =:trajetid', ['trajetid'=>$trajet->id,'userid'=>$user->id]);
+								$nbplaces = $result[0]->nbplaces;
+							?>
 								<tr>
 									<td class="text-primary"><strong>{!! $user->pseudoUsers !!}</strong></td>
+									<td>{{ $nbplaces }}</td>
 									<td>{!! link_to_route('user.show', 'Voir', [$user->id], ['class' => 'btn btn-success btn-block']) !!}</td>	
 									<td>
 										{!! Form::open(array('url' => '/messages/create')) !!}
@@ -111,7 +124,10 @@
 						@endforeach
 					</tbody>
 				</table>
-				
+			
+			<?
+			//ici on affiche les informations du conducteur si l'utilisateur n'est pas le conducteur
+			?>
 			@if($trajet->idConducteurTrajet != Auth::user()->id)
 				<br/><p>Conducteur :</p>
 				<table class="table">
@@ -141,8 +157,14 @@
 			@endif
         </div>
     </div>
-    <a href="{{ url('/mytrajet') }}" class="btn btn-primary">
-        <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-    </a>
+	@if(Auth::user()->admin)
+		<a href="javascript:history.back()" class="btn btn-primary">
+			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+		</a>
+	@else
+		<a href="{{ url('/mytrajet') }}" class="btn btn-primary">
+			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+		</a>
+	@endif
 </div>
 @stop

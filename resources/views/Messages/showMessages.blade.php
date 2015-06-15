@@ -11,7 +11,19 @@ Date::setLocale('fr');
 			<div class="panel-heading">
 				<h3 class="panel-title">Discussion : "{!! $thread->subject !!}"</h3>
 			</div>
-			
+			<script>
+				function verifForm(f){
+						var message = f.message;
+						
+						if(message.value.trim().length>0)
+							return true;
+						else
+						{
+							alert("Veuillez remplir le champ 'Message'.");
+							return false;
+						}
+					}
+			</script>
 			<div class="panel-body">
 			@foreach($thread->messages as $message)
 				
@@ -45,7 +57,7 @@ Date::setLocale('fr');
 			@endforeach
 	
 			<h5><strong><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Ajouter un nouveau message</strong></h5>
-			{!! Form::open(['route' => ['messages.update', $thread->id], 'method' => 'PUT']) !!}
+			{!! Form::open(['route' => ['messages.update', $thread->id], 'method' => 'PUT', 'onsubmit' => 'return verifForm(this)']) !!}
 			<!-- Message Form Input -->
 			<div class="form-group">
 				{!! Form::textarea('message', null, ['class' => 'form-control']) !!}

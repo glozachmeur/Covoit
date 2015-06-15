@@ -10,6 +10,8 @@
 				<div class="panel-body">
 					@if(Input::get('trajet_id')!==null)
 						<?php
+							//On effectue ces actions lors de la validation d'un trajet par le conducteur, les paiement sont effectués
+							
 							$trajet = App\Trajet::find(Input::get('trajet_id'));
 							if(!$trajet->statutTrajet){
 								DB::table('T_TRAJET')
@@ -18,17 +20,25 @@
 								
 								
 								$nbPassager = $trajet->passagers->count();
-								
+								$total_places=0;
 								if($nbPassager>0){
 									foreach($trajet->passagers as $passager){
 										$solde_prec=$passager->soldeUsers;
+										
+										//permet de récupérer le nombre de places qu'a réservé l'utilisateur
+										$result = DB::select('select nbplaces from trajet_user where user_id =:userid AND trajet_id =:trajetid', ['trajetid'=>$trajet->id,'userid'=>$passager->id]);
+										$nbplaces = $result[0]->nbplaces;
+										
+										//variable qui compte le nombre totale de places réservées, pour calculer le solde du conducteur
+										$total_places+=$nbplaces;
+
 										DB::table('users')
 										->where('id', $passager->id)
-										->update(['soldeUsers' => $solde_prec-$trajet->pppTrajet]);
+										->update(['soldeUsers' => $solde_prec-($trajet->pppTrajet*$nbplaces)]);
 									}
 									
 									$solde_prec=Auth::user()->soldeUsers;
-									$montant=$trajet->pppTrajet*$nbPassager;
+									$montant=$trajet->pppTrajet*$total_places;
 									DB::table('users')
 										->where('id', Auth::user()->id)
 										->update(['soldeUsers' => $solde_prec+$montant]);
@@ -130,7 +140,9 @@
 					
 					<br/><h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Passager</h3>
 					
-					<?php $nbTrajets = Auth::user()->trajetsPassager->count(); ?>
+					<?php 
+						$nbTrajets = Auth::user()->trajetsPassager->count(); 
+					?>
 					@if($nbTrajets > 0)
 						<br/><p>Voici les trajets dans lesquels vous êtes passager.</p>
 						<table class="table">
@@ -140,7 +152,7 @@
 								<th>Ville d'arrivée</th>
 								<th>Date</th>
 								<th>Heure de départ</th>
-								<th>Nombre de places</th>
+								<th>Nb de places</th>
 								<th>Statut</th>
 								<th></th>
 							</tr>
@@ -148,11 +160,9 @@
 						<tbody>
 						@foreach (Auth::user()->trajetsPassager as $trajetPassager)
 							<?php
-								if($trajetPassager->nbPlacesTrajet !=0){
-									$nbPlaces = $trajetPassager->nbPlacesTrajet;
-								}else{
-									$nbPlaces = "Complet";
-								}
+								//permet de récupérer le nombre de places qu'a réservé l'utilisateur
+								$result = DB::select('select nbplaces from trajet_user where user_id =:userid AND trajet_id =:trajetid', ['trajetid'=>$trajetPassager->id,'userid'=>Auth::user()->id]);
+								$nbplaces = $result[0]->nbplaces;
 								
 								if($trajetPassager->statutTrajet){
 									$statut = "Effectué";
@@ -165,7 +175,7 @@
 								<td class="text-primary"><strong>{!! $trajetPassager->villeArriveeTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajetPassager->dateDebutTrajet !!}</strong></td>
 								<td class="text-primary"><strong>{!! $trajetPassager->heureDepartTrajet !!}</strong></td>
-								<td class="text-primary"><strong>{!! $nbPlaces !!}</strong></td>
+								<td class="text-primary"><strong>{!! $nbplaces !!}</strong></td>
 								<td class="text-primary"><strong>{!! $statut !!}</strong></td>
 								<td>{!! link_to_route('trajet.show', 'Voir', [$trajetPassager->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 								@if($trajetPassager->statutTrajet)
@@ -196,7 +206,7 @@
 										</td>
 									@else
 										<td>
-												<strong><h6><i>Vous avez ce trajet comme étant "{{ $tab_notes[$note_trajet] }}".</i></h6></strong>
+												<strong><h6><i>Vous avez noté ce trajet comme étant "{{ $tab_notes[$note_trajet] }}".</i></h6></strong>
 										</td>
 									@endif
 								@endif

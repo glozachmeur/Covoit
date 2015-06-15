@@ -34,7 +34,7 @@
 								?>
 								<p>Note moyenne de passager : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong><p>
 							@else
-								<p>Note moyenne de passager : Vous n'avez pas encore été noté !<p>
+								<p>Note moyenne de passager : vous n'avez pas encore été noté !<p>
 							@endif
 							
 							@if($user->trajets->count()!=0)
@@ -62,7 +62,7 @@
 									?>
 									<p>Note moyenne de conducteur : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong><p>
 								@else
-									<p>Note moyenne de passager : Vous n'avez pas encore été noté !<p>
+									<p>Note moyenne de conducteur : vous n'avez pas encore été noté !<p>
 								@endif
 							@endif
 						</div>

@@ -10,13 +10,14 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">Liste des véhicules</h3>
 			</div>
+		<div class="panel-body">
+		@if(Auth::user()->admin==1)
 			<table class="table">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>Nom</th>
 						<th>Propriétaire</th>
-						<th></th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -28,18 +29,21 @@
 							<td class="text-primary"><strong>{!! $vehicule->nomVehicule !!}</strong></td>
 							<td>{!! $vehicule->user->pseudoUsers !!}</td>
 							<td>{!! link_to_route('vehicule.show', 'Voir', [$vehicule->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-							<td>{!! link_to_route('vehicule.edit', 'Modifier', [$vehicule->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 							<td>
 								{!! Form::open(['method' => 'DELETE', 'route' => ['vehicule.destroy', $vehicule->id]]) !!}
-									{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
+									{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer ce véhicule ?\')']) !!}
 								{!! Form::close() !!}
 							</td>
 						</tr>
 					@endforeach
 	  			</tbody>
 			</table>
+		@else
+			<div class="alert alert-danger" role="alert">
+				<strong>Accès refusé : cette page est réservée aux administrateurs !</strong>
+			</div>
+		@endif
+
 		</div>
-		{!! link_to_route('vehicule.create', 'Ajouter un véhicule', [], ['class' => 'btn btn-info pull-right']) !!}
-		{!! $links !!}
-	</div>
+	</div></div>
 @stop

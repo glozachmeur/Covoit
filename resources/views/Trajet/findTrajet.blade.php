@@ -11,8 +11,9 @@
             <div class="col-sm-12">
 			
 			<?php
-			$villeDep= $editeurs = DB::table('T_TRAJET')->lists('villeDepartTrajet');
-			$villeArr= $editeurs = DB::table('T_TRAJET')->lists('villeArriveeTrajet');
+			$villeDep = array_unique(DB::table('T_TRAJET')->lists('villeDepartTrajet'));
+			$villeArr = array_unique(DB::table('T_TRAJET')->lists('villeArriveeTrajet'));
+			
 			?>
 				{!! Form::open() !!}
 				

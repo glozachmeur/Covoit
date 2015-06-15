@@ -13,11 +13,12 @@ class UserUpdateRequest extends Request {
 	{
 		$id = $this->segment(2);
 		return [
-			'name' => 'max:255',
-			'prenomUsers' => 'max:255',
+			'name' => 'alpha|max:255',
+			'prenomUsers' => 'alpha|max:255',
 			'email' => 'email|max:255|',
-			'pseudoUsers' => 'max:20',
-			'telPortUsers' => 'required|max:13',
+			'pseudoUsers' => 'alpha_num|max:20',
+			'telFixeUsers' => 'digits:10',
+			'telPortUsers' => 'required|digits:10',
 			'photo' => 'image'
 		];
 	}

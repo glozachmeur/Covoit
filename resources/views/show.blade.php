@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('contenu')
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="col-sm-offset-3 col-sm-6">
     	<br>
 		<div class="panel panel-primary">	
 			<div class="panel-heading">Fiche d'utilisateur</div>
@@ -32,7 +32,7 @@
 								?>
 								<li>Note moyenne de passager : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong></li>
 							@else
-								<p>Note moyenne de passager : Cet utilisateur n'a pas encore été noté!<p>
+								<li>Note moyenne de passager : cet utilisateur n'a pas encore été noté!<li>
 							@endif
 							
 							@if($user->trajets->count()!=0)
@@ -61,7 +61,7 @@
 								
 									<li>Note moyenne de conducteur : <strong>{{ $tab_notes[round($note_moyenne)] }}</strong></li>
 								@else
-									<p>Note moyenne de conducteur : Cet utilisateur n'a pas encore été noté !<p>
+									<li>Note moyenne de conducteur : Cet utilisateur n'a pas encore été noté !<li>
 								@endif
 							@endif
 				<?php if($user->telPortUsers !=''){ ?>
@@ -71,6 +71,11 @@
 				<?php if($user->telFixeUsers !=''){ ?>
 					<li>Numéro de tel. fixe : {{ $user->telFixeUsers }}</li>				
 				<?php } ?>
+				
+				<div class="form-group">
+						Photo de profil actuelle :
+						<img src="../../../public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
+				</div>
 				
 				@if($user->admin == 1)
 					Administrateur

@@ -6,13 +6,13 @@
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
-		
-		
-			@if(Auth::user()->admin==1)
-				<div class="panel panel-primary">
+		<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">Liste des utilisateurs</h3>
 					</div>
+		<div class="panel-body">
+			@if(Auth::user()->admin==1)
+				
 			
 					<table class="table">
 						<thead>
@@ -51,16 +51,13 @@
 							@endforeach
 						</tbody>
 					</table>
-				</div>
 				{!! $links !!}
 		@else
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Liste des utilisateurs</h3>
+				<div class="alert alert-danger" role="alert">
+					<strong>Accès refusé : cette page est réservée aux administrateurs !</strong>
 				</div>
-				<p>Erreur : cette page est réservée aux administrateurs !</p>
+		@endif			
 			</div>
-		@endif
 		</div>		
-	</div>
+	</div>		
 @stop

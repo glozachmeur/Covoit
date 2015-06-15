@@ -12,10 +12,10 @@ class TrajetCreateRequest extends Request {
     public function rules()
     {
         return [
-            'villeDepartTrajet' => 'required|max:255',
-            'villeArriveeTrajet' => 'required|max:255',
+            'villeDepartTrajet' => 'required|alpha_dash|max:255',
+            'villeArriveeTrajet' => 'required|alpha_dash|max:255',
             'heureDepartTrajet' => 'required',
-			'dateDebutTrajet' => 'required',
+			'dateDebutTrajet' => 'required|after:now'
 			];
     }
 

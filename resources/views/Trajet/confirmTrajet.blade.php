@@ -16,7 +16,7 @@
 						$trajet_id= Input::get('trajet_id');
 						
 						DB::table('trajet_user')->insert(
-							['user_id' => Auth::user()->id, 'trajet_id' => $trajet_id]
+							['user_id' => Auth::user()->id, 'trajet_id' => $trajet_id, 'nbplaces' => $nbPlaces]
 						);
 						
 						DB::table('T_TRAJET')

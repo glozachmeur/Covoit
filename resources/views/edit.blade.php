@@ -51,10 +51,8 @@
 					
 					<div class="form-group">
 						Photo de profil actuelle :
-						<img src="/public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
-					</div>
-					{!! $user->photoUsers !!}
-					
+						<img src="../../../../public/images/{!! $user->photoUsers !!}" alt="Photo de profil" class="img-thumbnail">
+					</div>					
 					
 					<div class="form-group">
 						<div class="checkbox">
