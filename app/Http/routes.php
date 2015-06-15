@@ -14,14 +14,8 @@
 //route la gestion des utilisateurs
 
 
-//Route::resource('vehicule', 'VehiculeController', ['middleware' => 'admin']);
+Route::resource('vehicule', 'VehiculeController', ['middleware' => 'admin']);
 Route::resource('user', 'UserController', ['middleware' => 'admin']);
-
-Route::get('vehicule',[
-    'uses'=>'VehiculeController',
-    'middleware' =>'admin'
-]);
-Route::resource('vehicule', 'VehiculeController');
 
 Route::resource('/', 'HomeController');
 Route::resource('home', 'HomeController');
@@ -88,8 +82,6 @@ Route::post('messages/create', function()
 {
     return View::make('Messages/createMessages');
 });
-
-Route::resource('find', 'TrajetController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
